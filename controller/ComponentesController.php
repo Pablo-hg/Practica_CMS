@@ -6,7 +6,7 @@ use App\Helper\DbHelper;
 use App\Model\Componentes;
 
 
-class NoticiaController
+class ComponentesController
 {
     var $db;
     var $view;

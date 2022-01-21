@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Model\Componentes;
 use App\Helper\ViewHelper;
 use App\Helper\DbHelper;
+use App\Model\Discusiones;
 
 
 class AppController
@@ -25,16 +26,16 @@ class AppController
     public function index(){
 
         //Consulta a la bbdd
-        $rowset = $this->db->query("SELECT * FROM noticias WHERE activo=1 AND home=1 ORDER BY fecha DESC");
+        $rowset = $this->db->query("SELECT * FROM Componentes WHERE activo=1 AND home=1 ORDER BY fecha DESC");
 
         //Asigno resultados a un array de instancias del modelo
-        $noticias = array();
+        $componentes = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($noticias,new Componentes($row));
+            array_push($componentes,new Componentes($row));
         }
 
         //Llamo a la vista
-        $this->view->vista("app", "index", $noticias);
+        $this->view->vista("app", "index", $componentes);
     }
 
     public function acercade(){
@@ -44,33 +45,63 @@ class AppController
 
     }
 
-    public function noticias(){
+    public function componentes(){
 
         //Consulta a la bbdd
-        $rowset = $this->db->query("SELECT * FROM noticias WHERE activo=1 ORDER BY fecha DESC");
+        $rowset = $this->db->query("SELECT * FROM Componentes WHERE activo=1 ORDER BY fecha DESC");
 
         //Asigno resultados a un array de instancias del modelo
-        $noticias = array();
+        $componentes = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($noticias,new Componentes($row));
+            array_push($componentes,new Componentes($row));
         }
 
         //Llamo a la vista
-        $this->view->vista("app", "noticias", $noticias);
+        $this->view->vista("app", "componentes", $componentes);
 
     }
 
-    public function noticia($slug){
+    public function componente($slug){
 
         //Consulta a la bbdd
-        $rowset = $this->db->query("SELECT * FROM noticias WHERE activo=1 AND slug='$slug' LIMIT 1");
+        $rowset = $this->db->query("SELECT * FROM Componentes WHERE activo=1 AND slug='$slug' LIMIT 1");
 
         //Asigno resultado a una instancia del modelo
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $noticia = new Componentes($row);
+        $componente = new Componentes($row);
 
         //Llamo a la vista
-        $this->view->vista("app", "noticia", $noticia);
+        $this->view->vista("app", "componente", $componente);
+
+    }
+
+    public function discusiones(){
+
+        //Consulta a la bbdd
+        $rowset = $this->db->query("SELECT * FROM Discusiones WHERE activo=1 ORDER BY fecha DESC");
+
+        //Asigno resultados a un array de instancias del modelo
+        $discusiones = array();
+        while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
+            array_push($discusiones,new Discusiones($row));
+        }
+
+        //Llamo a la vista
+        $this->view->vista("app", "discusiones", $discusiones);
+
+    }
+
+    public function discusion($slug){
+
+        //Consulta a la bbdd
+        $rowset = $this->db->query("SELECT * FROM Discusiones WHERE activo=1 AND slug='$slug' LIMIT 1");
+
+        //Asigno resultado a una instancia del modelo
+        $row = $rowset->fetch(\PDO::FETCH_OBJ);
+        $discusion = new Discusiones($row);
+
+        //Llamo a la vista
+        $this->view->vista("app", "discusion", $discusion);
 
     }
 }

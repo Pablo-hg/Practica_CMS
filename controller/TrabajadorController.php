@@ -6,7 +6,7 @@ use App\Helper\DbHelper;
 use App\Model\Trabajadores;
 
 
-class UsuarioController
+class TrabajadorController
 {
     var $db;
     var $view;

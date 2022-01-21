@@ -6,8 +6,8 @@ session_start();
 
 //Incluyo los controladores que voy a utilizar para que seran cargados por Autoload
 use App\Controller\AppController;
-use App\Controller\NoticiaController;
-use App\Controller\UsuarioController;
+use App\Controller\ComponentesController;
+use App\Controller\TrabajadorController;
 use App\Controller\DiscusionController;
 
 //echo password_hash("1234Abcd!",  PASSWORD_BCRYPT, ['cost'=>12]); //-->para añadir usuarios
@@ -51,8 +51,8 @@ function controlador($nombre=null){
 
     switch($nombre){
         default: return new AppController; //Front-end
-        case "noticias": return new NoticiaController; //Back-end noticias
-        case "usuarios": return new UsuarioController; //Autentificacion y Back-end de usuarios
+        case "noticias": return new ComponentesController; //Back-end noticias
+        case "usuarios": return new TrabajadorController; //Autentificacion y Back-end de usuarios
         case "discusiones": return new DiscusionController;
     }
 
