@@ -8,6 +8,7 @@ session_start();
 use App\Controller\AppController;
 use App\Controller\NoticiaController;
 use App\Controller\UsuarioController;
+use App\Controller\DiscusionController;
 
 //echo password_hash("1234Abcd!",  PASSWORD_BCRYPT, ['cost'=>12]); //-->para añadir usuarios
 
@@ -16,7 +17,7 @@ use App\Controller\UsuarioController;
  * Asigno a sesión las rutas de las carpetas public y home, necesarias tanto para las rutas como para
  * poder enlazar imágenes y archivos css, js
  */
-$_SESSION['public'] = '/cms/public/';
+$_SESSION['public'] = '/PracticaCMS/public/';
 $_SESSION['home'] = $_SESSION['public'].'index.php/';
 
 //Defino y llamo a la función que autocargará las clases cuando se instancien
@@ -52,6 +53,7 @@ function controlador($nombre=null){
         default: return new AppController; //Front-end
         case "noticias": return new NoticiaController; //Back-end noticias
         case "usuarios": return new UsuarioController; //Autentificacion y Back-end de usuarios
+        case "discusiones": return new DiscusionController;
     }
 
 }
