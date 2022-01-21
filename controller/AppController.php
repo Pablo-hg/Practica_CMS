@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use App\Model\Noticia;
+use App\Model\Componentes;
 use App\Helper\ViewHelper;
 use App\Helper\DbHelper;
 
@@ -30,7 +30,7 @@ class AppController
         //Asigno resultados a un array de instancias del modelo
         $noticias = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($noticias,new Noticia($row));
+            array_push($noticias,new Componentes($row));
         }
 
         //Llamo a la vista
@@ -52,7 +52,7 @@ class AppController
         //Asigno resultados a un array de instancias del modelo
         $noticias = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($noticias,new Noticia($row));
+            array_push($noticias,new Componentes($row));
         }
 
         //Llamo a la vista
@@ -67,7 +67,7 @@ class AppController
 
         //Asigno resultado a una instancia del modelo
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $noticia = new Noticia($row);
+        $noticia = new Componentes($row);
 
         //Llamo a la vista
         $this->view->vista("app", "noticia", $noticia);

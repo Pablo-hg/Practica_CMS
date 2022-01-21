@@ -17,7 +17,7 @@ use App\Controller\DiscusionController;
  * Asigno a sesión las rutas de las carpetas public y home, necesarias tanto para las rutas como para
  * poder enlazar imágenes y archivos css, js
  */
-$_SESSION['public'] = '/PracticaCMS/public/';
+$_SESSION['public'] = '2Eva/PracticaCMS/public/';
 $_SESSION['home'] = $_SESSION['public'].'index.php/';
 
 //Defino y llamo a la función que autocargará las clases cuando se instancien
@@ -78,8 +78,15 @@ switch ($ruta){
     case (strpos($ruta,"noticia/") === 0): //Si la ruta empieza por "noticia/"
         controlador()->noticia(str_replace("noticia/","",$ruta)); //El parámetro es lo que hayo después de "noticias"
         break;
+    case "discusiones":
+        controlador()->noticias();
+        break;
+    case (strpos($ruta,"discusion/") === 0): //Si la ruta empieza por "noticia/"
+        controlador()->noticia(str_replace("discusion/","",$ruta)); //El parámetro es lo que hayo después de "noticias"
+        break;
 
     //Back-end
+    //General
     case "admin":
     case "admin/entrar":
         controlador("usuarios")->entrar();
@@ -90,6 +97,7 @@ switch ($ruta){
     case "admin/usuarios"://listar usuarios
         controlador("usuarios")->index();
         break;
+    //Usuarios
     case "admin/usuarios/crear":
         controlador("usuarios")->crear();
         break;
@@ -102,6 +110,7 @@ switch ($ruta){
     case (strpos($ruta,"admin/usuarios/borrar/") === 0)://confirmacion para borrar
         controlador("usuarios")->borrar(str_replace("admin/usuarios/borrar/","",$ruta));
         break;
+    //Noticias
     case "admin/noticias":
         controlador("noticias")->index();
         break;
@@ -122,6 +131,13 @@ switch ($ruta){
         break;
     case (strpos($ruta,"admin/") === 0):
         controlador("usuarios")->entrar();
+        break;
+    //Discusiones
+    case "admin/discusiones":
+        controlador("discusiones")->index();
+        break;
+    case "admin/discusiones/crear":
+        controlador("discusiones")->crear();
         break;
 
     //Resto de rutas

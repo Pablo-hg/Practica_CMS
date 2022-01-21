@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Helper\ViewHelper;
 use App\Helper\DbHelper;
-use App\Model\Noticia;
+use App\Model\Componentes;
 
 
 class NoticiaController
@@ -34,7 +34,7 @@ class NoticiaController
         //Asigno resultados a un array de instancias del modelo
         $noticias = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($noticias,new Noticia($row));
+            array_push($noticias,new Componentes($row));
         }
 
         $this->view->vista("admin","noticias/index", $noticias);
@@ -50,7 +50,7 @@ class NoticiaController
         //Obtengo la noticia
         $rowset = $this->db->query("SELECT * FROM noticias WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $noticia = new Noticia($row);
+        $noticia = new Componentes($row);
 
         if ($noticia->activo == 1){
 
@@ -85,7 +85,7 @@ class NoticiaController
         //Obtengo la noticia
         $rowset = $this->db->query("SELECT * FROM noticias WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $noticia = new Noticia($row);
+        $noticia = new Componentes($row);
 
         if ($noticia->home == 1){
 
@@ -119,7 +119,7 @@ class NoticiaController
         //Obtengo la noticia
         $rowset = $this->db->query("SELECT * FROM noticias WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $noticia = new Noticia($row);
+        $noticia = new Componentes($row);
 
         //Borro la noticia
         $consulta = $this->db->exec("DELETE FROM noticias WHERE id='$id'");
@@ -145,7 +145,7 @@ class NoticiaController
         $this->view->permisos("noticias");
 
         //Creo un nuevo usuario vacío
-        $noticia = new Noticia();
+        $noticia = new Componentes();
 
         //Llamo a la ventana de edición
         $this->view->vista("admin","noticias/editar", $noticia);
@@ -231,7 +231,7 @@ class NoticiaController
             //Obtengo la noticia
             $rowset = $this->db->query("SELECT * FROM noticias WHERE id='$id' LIMIT 1");
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
-            $noticia = new Noticia($row);
+            $noticia = new Componentes($row);
 
             //Llamo a la ventana de edición
             $this->view->vista("admin","noticias/editar", $noticia);

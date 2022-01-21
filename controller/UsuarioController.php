@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Helper\ViewHelper;
 use App\Helper\DbHelper;
-use App\Model\Usuario;
+use App\Model\Trabajadores;
 
 
 class UsuarioController
@@ -50,7 +50,7 @@ class UsuarioController
 
             //Asigno resultado a una instancia del modelo
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
-            $usuario = new Usuario($row);
+            $usuario = new Trabajadores($row);
 
             //Si existe el usuario
             if ($usuario->usuario){
@@ -109,7 +109,7 @@ class UsuarioController
         //Asigno resultados a un array de instancias del modelo
         $usuarios = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($usuarios,new Usuario($row));
+            array_push($usuarios,new Trabajadores($row));
         }
 
         $this->view->vista("admin","usuarios/index", $usuarios);
@@ -125,7 +125,7 @@ class UsuarioController
         //Obtengo el usuario
         $rowset = $this->db->query("SELECT * FROM usuarios WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $usuario = new Usuario($row);
+        $usuario = new Trabajadores($row);
 
         if ($usuario->activo == 1){
 
@@ -172,7 +172,7 @@ class UsuarioController
         $this->view->permisos("usuarios");
 
         //Creo un nuevo usuario vacío
-        $usuario = new Usuario();
+        $usuario = new Trabajadores();
 
         //Llamo a la ventana de edición
         $this->view->vista("admin","usuarios/editar", $usuario);
@@ -223,7 +223,7 @@ class UsuarioController
             //Obtengo el usuario
             $rowset = $this->db->query("SELECT * FROM usuarios WHERE id='$id' LIMIT 1");
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
-            $usuario = new Usuario($row);
+            $usuario = new Trabajadores($row);
 
             //Llamo a la ventana de edición
             $this->view->vista("admin","usuarios/editar", $usuario);

@@ -1,7 +1,7 @@
 <?php
 namespace App\Model;
 
-class Usuario {
+class Trabajadores {
 
     //Variables o atributos
     var $id;
@@ -9,8 +9,9 @@ class Usuario {
     var $clave;
     var $fecha_acceso;
     var $activo;
-    var $usuarios;
-    var $noticias;
+    var $trabajadores;
+    var $componentes;
+    var $discusiones;
 
     function __construct($data=null){
 
@@ -19,8 +20,9 @@ class Usuario {
         $this->clave = ($data) ? $data->clave : null;
         $this->fecha_acceso = ($data) ? $data->fecha_acceso : null;
         $this->activo = ($data) ? $data->activo : null;
-        $this->usuarios = ($data) ? $data->usuarios : null;
-        $this->noticias = ($data) ? $data->noticias : null;
+        $this->trabajadores = ($data) ? $data->trabajadores : null;
+        $this->componentes = ($data) ? $data->componentes : null;
+        $this->discusiones = ($data) ? $data->discusiones : null;
 
     }
 
