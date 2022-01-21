@@ -1,2 +1,21 @@
 Usuario tabla --> usuario-Práctica-cms;
 Password --> Madrid01
+
+Tabla de Trabajadores:
+    -id --> clave
+    -usuario --> el nombre
+    -clave --> contraseña
+    -fecha acceso --> fecha ultimo acceso
+    -activo --> usuario activo o no
+    -trabajadores --> indica si el usuario tiene acdeso a la gestion de usuarios
+    -componentes --> indica si el usuario tiene acceso a la gestion de noticias
+    -discusiones --> indica si el usuario tiene acceso a la gestion de foros
+
+Tabla de Componentes:
+    -Exactamente igual al cms
+
+Tabla de Discusiones:
+    -Lo mismo que Componentes
+    -Añadimos al columna de "likes"
+
+
