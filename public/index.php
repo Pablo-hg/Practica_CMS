@@ -12,7 +12,7 @@ use App\Controller\DiscusionesController;
 
 //echo password_hash("1234Abcd!",  PASSWORD_BCRYPT, ['cost'=>12]); //-->para añadir usuarios
 
-
+//dsfsjkghdfuklsdaghdfklghasklfgklasgfkasgkl.fgas
 /*
  * Asigno a sesión las rutas de las carpetas public y home, necesarias tanto para las rutas como para
  * poder enlazar imágenes y archivos css, js
