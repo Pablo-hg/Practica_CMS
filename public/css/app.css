@@ -4,22 +4,30 @@ html{
     color: #333;
 }
 
+
+
 body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-image: url("https://elchapuzasinformatico.com/wp-content/uploads/2022/01/220117-1080p-gd24.jpg");
+    background-position: top;
 }
 
 nav{
-    background-color: #333;
-    box-shadow: none;
-    -webkit-box-shadow: none;
+    background-color: #19232d;
     padding: 0 2rem;
+    max-width: 1170px;
+    margin: 0 auto;
+
 }
 
-nav img{
-    width: 8rem;
-    padding-top: 0.8rem;
+
+header img{
+    width: 10rem;
+    padding: 1rem 0;
+    float: left;
+    margin-left: 430px;
 }
 
 main {

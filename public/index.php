@@ -8,7 +8,7 @@ session_start();
 use App\Controller\AppController;
 use App\Controller\ComponentesController;
 use App\Controller\TrabajadorController;
-use App\Controller\DiscusionController;
+use App\Controller\DiscusionesController;
 
 //echo password_hash("1234Abcd!",  PASSWORD_BCRYPT, ['cost'=>12]); //-->para añadir usuarios
 
@@ -17,7 +17,7 @@ use App\Controller\DiscusionController;
  * Asigno a sesión las rutas de las carpetas public y home, necesarias tanto para las rutas como para
  * poder enlazar imágenes y archivos css, js
  */
-$_SESSION['public'] = '2Eva/PracticaCMS/public/';
+$_SESSION['public'] = '/2Eva/PracticaCMS/public/';
 $_SESSION['home'] = $_SESSION['public'].'index.php/';
 
 //Defino y llamo a la función que autocargará las clases cuando se instancien

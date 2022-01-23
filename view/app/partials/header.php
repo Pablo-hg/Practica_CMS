@@ -13,32 +13,34 @@
 </head>
 
 <body>
+<header>
+    <!--Logo-->
+    <a href="<?php echo $_SESSION['home'] ?>" class="brand-logo" title="Inicio">
+        <img src="<?php echo $_SESSION['public'] ?>img/mordecai.jpeg" alt="Sporovich">
+    </a>
+</header>
 <nav>
     <div class="nav-wrapper">
-        <!--Logo-->
-        <a href="<?php echo $_SESSION['home'] ?>" class="brand-logo" title="Inicio">
-            <img src="<?php echo $_SESSION['public'] ?>img/logo.svg" alt="Logo Harry Potter">
-        </a>
-
         <!--Botón menú móviles-->
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
         <!--Menú de navegación-->
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li>
+        <ul id="nav-mobile" class="center-aling left hide-on-med-and-down">
+            <li class="active">
                 <a href="<?php echo $_SESSION['home'] ?>" title="Inicio">Inicio</a>
             </li>
             <li>
                 <a href="<?php echo $_SESSION['home'] ?>noticias" title="Noticias">Noticias</a>
             </li>
             <li>
+                <a href="<?php echo $_SESSION['home'] ?>discusiones" title="Foro">Foro</a>
+            </li>
+            <li>
                 <a href="<?php echo $_SESSION['home'] ?>acerca-de" title="Acerca de">Acerca de</a>
             </li>
             <li>
                 <a href="<?php echo $_SESSION['home'] ?>admin" title="Panel de administración"
-                   target="_blank" class="grey-text">
-                    Admin
-                </a>
+                   target="_blank" class="teal lighten-2 white-text"> Admin </a>
             </li>
         </ul>
 
