@@ -1,9 +1,8 @@
 </section>
 </main>
 <footer class="center-align">
-    © <?php echo date("Y") ?>
-    <a href="https://jairogarciarincon.com" target="_blank" title="Jairo García Rincón">
-        Jairo García Rincón
+    © 2000 - <?php echo date("Y") ?>
+    <a href="https://jairogarciarincon.com" target="_blank" title="Jairo García Rincón"> Pablo Horcajada González
     </a>
 </footer>
 

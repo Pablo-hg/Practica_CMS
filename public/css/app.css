@@ -5,7 +5,6 @@ html{
 }
 
 
-
 body{
     display: flex;
     min-height: 100vh;
@@ -14,15 +13,6 @@ body{
     background-position: top;
 }
 
-nav{
-    background-color: #19232d;
-    padding: 0 2rem;
-    max-width: 1170px;
-    margin: 0 auto;
-
-}
-
-
 header img{
     width: 10rem;
     padding: 1rem 0;
@@ -30,34 +20,37 @@ header img{
     margin-left: 430px;
 }
 
+nav{
+    background-color: #19232d;
+    max-width: 1170px;
+    margin: 0 auto;
+    text-transform: uppercase;
+}
+
+nav li:hover{
+    background-color: rgba(31,110,163,.8);
+}
+
 main {
     flex: 1 0 auto;
     width: 100%;
-    max-width: 1920px;
-    padding: 0 2rem;
+    max-width: 1170px;
+    padding: 0 1rem;
     margin: 0 auto;
-}
-
-header h1{
-    font-size: 3rem;
-    margin: 1rem 0 0 0;
-}
-
-header h2{
-    font-size: 2rem;
-    margin: 1rem 0;
+    background-color: white;
 }
 
 footer{
-    background-color: #333;
+    background-color: #19232d;
     color: white;
     padding: 1rem 0;
+    margin: auto 25rem;
+    margin-bottom: 1rem;
 }
 
-footer a{
+footer a {
     color: white;
 }
-
 footer a:hover{
     text-decoration: underline;
 }

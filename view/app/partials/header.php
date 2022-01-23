@@ -27,7 +27,7 @@
         <!--Menú de navegación-->
         <ul id="nav-mobile" class="center-aling left hide-on-med-and-down">
             <li class="active">
-                <a href="<?php echo $_SESSION['home'] ?>" title="Inicio">Inicio</a>
+                <a href="<?php echo $_SESSION['home'] ?>" title="Inicio" style="background-color: rgba(31,110,163,.8);">Inicio</a>
             </li>
             <li>
                 <a href="<?php echo $_SESSION['home'] ?>noticias" title="Noticias">Noticias</a>
@@ -40,7 +40,7 @@
             </li>
             <li>
                 <a href="<?php echo $_SESSION['home'] ?>admin" title="Panel de administración"
-                   target="_blank" class="teal lighten-2 white-text"> Admin </a>
+                   target="_blank" style="background-color: #00c300;"> Admin </a>
             </li>
         </ul>
 
@@ -67,10 +67,4 @@
 </ul>
 
 <main>
-
-    <header>
-        <h1>Mi primer CMS</h1>
-        <h2>con POO, MVC, PHP y MySQL</h2>
-    </header>
-
     <section class="container-fluid">
