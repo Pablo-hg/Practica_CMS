@@ -14,6 +14,7 @@ class Componentes
     var $fecha;
     var $autor;
     var $imagen;
+    var $review;
 
     function __construct($data=null){
 
@@ -27,6 +28,7 @@ class Componentes
         $this->fecha = ($data) ? $data->fecha : null;
         $this->autor = ($data) ? $data->autor : null;
         $this->imagen = ($data) ? $data->imagen : null;
+        $this->review = ($data) ? $data->review : null;
 
     }
 

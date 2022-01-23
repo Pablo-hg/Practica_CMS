@@ -65,6 +65,5 @@
         </a>
     </li>
 </ul>
-
 <main>
     <section class="container-fluid">

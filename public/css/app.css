@@ -41,7 +41,7 @@ main {
 }
 
 footer{
-    background-color: #19232d;
+    background-color: #111;
     color: white;
     padding: 1rem 0;
     margin: auto 25rem;
@@ -57,20 +57,88 @@ footer a:hover{
 
 /* SECTION ************************************************************************************************************/
 
-section h3{
-    font-size: 1.5rem;
-    border-bottom: 1px solid #333;
-    padding-bottom: 0.3rem;
-    font-weight:bold;
+
+
+.slider-componentes{
+    padding-top: 1rem;
 }
 
-section h3 a{
-    color: #333;
+.reviews{
+    overflow: hidden;
+    position: relative;
 }
 
-section h3 span{
-    font-weight:normal;
-    color: #444;
+
+    /* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 45%;
+    padding: 7px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    /* user-select: auto; */
+
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: #2580bd;
+}
+.elemento img{
+    width: 798px;
+    height: 16rem;
+}
+
+
+
+.slider-componentes section, #tabs-swipe-demo{
+    float: left;
+    width: 70%;
+    position: relative;
+    height: 260px;
+}
+
+#tabs-swipe-demo{
+    width: 30%;
+    background-color: #111;
+}
+.datos{
+    margin-bottom: 0.5rem;
+}
+
+
+a{
+    color: white;
+}
+
+.row{
+    margin-top: 1rem;
+    float: left;
+    position: relative;
+    width: 70%;
+}
+aside{
+    float: right;
+    position: relative;
+    width: 30%;
 }
 
 article h4{
@@ -83,17 +151,42 @@ article .card-info{
     left: 1.5rem;
 }
 
-.card.horizontal.small .card-image{
-    max-height: 70%;
+.card .card-action {
+    padding: 16px 0;
+}
+.card .card-content{
+    padding: 10px 17px;
+}
+.card .card-info{
+    position: relative;
+    bottom: 2rem;
+    left: 1rem;
+}
+.tabs li{
+    border-top: 1px solid #434343;
+    border-bottom: 1px solid #434343;
+    font-size: 11px;
+    padding-left: 10px;
+}
+
+
+h2{
+    margin: 1rem 0;
+    font-size: 20px;
+}
+h3{
+    font-size: 18px;
+    margin: 0.5rem 0;
+}
+
+.input-field{
+    margin-top: 2rem;
+}
+.input-field>label{
+    top: 10px;
 }
 
 .card.horizontal.small .card-image img{
     margin-top: 20%;
 }
 
-.card.horizontal.noticia{
-    border: none;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-
-}
