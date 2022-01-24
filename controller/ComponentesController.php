@@ -26,52 +26,51 @@ class ComponentesController
     public function index(){
 
         //Permisos
-        $this->view->permisos("noticias");
+        $this->view->permisos("componentes");
 
         //Recojo las noticias de la base de datos
-        $rowset = $this->db->query("SELECT * FROM noticias ORDER BY fecha DESC");
+        $rowset = $this->db->query("SELECT * FROM Componentes ORDER BY fecha DESC");
 
         //Asigno resultados a un array de instancias del modelo
-        $noticias = array();
+        $componentes = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($noticias,new Componentes($row));
+            array_push($componentes,new Componentes($row));
         }
 
-        $this->view->vista("admin","noticias/index", $noticias);
+        $this->view->vista("admin","componentes/index", $componentes);
 
     }
 
-    //Para activar o desactivar
+    //Para activar o desactivar en admin
     public function activar($id){
 
         //Permisos
-        $this->view->permisos("noticias");
+        $this->view->permisos("componentes");
 
         //Obtengo la noticia
-        $rowset = $this->db->query("SELECT * FROM noticias WHERE id='$id' LIMIT 1");
+        $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $noticia = new Componentes($row);
+        $componente = new Componente($row);
 
-        if ($noticia->activo == 1){
+        if ($componente->activo == 1){
 
             //Desactivo la noticia
-            $consulta = $this->db->exec("UPDATE noticias SET activo=0 WHERE id='$id'");
+            $consulta = $this->db->exec("UPDATE Componentes SET activo=0 WHERE id='$id'");
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/noticias","green","La noticia <strong>$noticia->titulo</strong> se ha desactivado correctamente.") :
-                $this->view->redireccionConMensaje("admin/noticias","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("admin/componentes","green","El componentes <strong>$componente->titulo</strong> se ha desactivado correctamente.") :
+                $this->view->redireccionConMensaje("admin/componentes","red","Hubo un error al guardar en la base de datos.");
         }
 
         else{
-
             //Activo la noticia
-            $consulta = $this->db->exec("UPDATE noticias SET activo=1 WHERE id='$id'");
+            $consulta = $this->db->exec("UPDATE Componentes SET activo=1 WHERE id='$id'");
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/noticias","green","La noticia <strong>$noticia->titulo</strong> se ha activado correctamente.") :
-                $this->view->redireccionConMensaje("admin/noticias","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("admin/componentes","green","El componente <strong>$componente->titulo</strong> se ha activado correctamente.") :
+                $this->view->redireccionConMensaje("admin/componentes","red","Hubo un error al guardar en la base de datos.");
         }
 
     }
@@ -80,7 +79,7 @@ class ComponentesController
     public function home($id){
 
         //Permisos
-        $this->view->permisos("noticias");
+        $this->view->permisos("componentes");
 
         //Obtengo la noticia
         $rowset = $this->db->query("SELECT * FROM noticias WHERE id='$id' LIMIT 1");

@@ -51,7 +51,7 @@ function controlador($nombre=null){
 
     switch($nombre){
         default: return new AppController; //Front-end
-        case "noticias": return new ComponentesController; //Back-end noticias
+        case "componentes": return new ComponentesController; //Back-end noticias
         case "usuarios": return new TrabajadorController; //Autentificacion y Back-end de usuarios
         case "discusiones": return new DiscusionController;
     }
@@ -72,11 +72,11 @@ switch ($ruta){
     case "acerca-de":
         controlador()->acercade();
         break;
-    case "noticias":
-        controlador()->noticias();
+    case "componentes":
+        controlador()->componentes();
         break;
-    case (strpos($ruta,"noticia/") === 0): //Si la ruta empieza por "noticia/"
-        controlador()->noticia(str_replace("noticia/","",$ruta)); //El parámetro es lo que hayo después de "noticias"
+    case (strpos($ruta,"componente/") === 0): //Si la ruta empieza por "componente/"
+        controlador()->componente(str_replace("componente/","",$ruta)); //El parámetro es lo que hayo después de "noticias"
         break;
     case "discusiones":
         controlador()->noticias();

@@ -18,6 +18,7 @@
     <a href="<?php echo $_SESSION['home'] ?>" class="brand-logo" title="Inicio">
         <img src="<?php echo $_SESSION['public'] ?>img/mordecai.jpeg" alt="Sporovich">
     </a>
+    <img src="https://tpc.googlesyndication.com/simgad/7485003666317542473?sqp=4sqPyQQ7QjkqNxABHQAAtEIgASgBMAk4A0DwkwlYAWBfcAKAAQGIAQGdAQAAgD-oAQGwAYCt4gS4AV_FAS2ynT4&rs=AOga4qmBAkVv7zPZv10PWVURTsmejmTbiA">
 </header>
 <nav>
     <div class="nav-wrapper">
@@ -30,7 +31,7 @@
                 <a href="<?php echo $_SESSION['home'] ?>" title="Inicio" style="background-color: rgba(31,110,163,.8);">Inicio</a>
             </li>
             <li>
-                <a href="<?php echo $_SESSION['home'] ?>noticias" title="Noticias">Noticias</a>
+                <a href="<?php echo $_SESSION['home'] ?>componentes" title="Componentes">Componentes</a>
             </li>
             <li>
                 <a href="<?php echo $_SESSION['home'] ?>discusiones" title="Foro">Foro</a>

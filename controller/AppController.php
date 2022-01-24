@@ -38,6 +38,13 @@ class AppController
         $this->view->vista("app", "index", $componentes);
     }
 
+    public function acercade(){
+
+        //Llamo a la vista
+        $this->view->vista("app", "acerca-de");
+
+    }
+
     //sacar solo las noticias que son reviews
     public function reviews(){
         $rowset = $this->db->query("SELECT * FROM Componentes WHERE activo=1 AND review=1 ORDER BY fecha DESC");
@@ -45,13 +52,6 @@ class AppController
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
             array_push($reviews,new Componentes($row));
         }
-    }
-
-    public function acercade(){
-
-        //Llamo a la vista
-        $this->view->vista("app", "acerca-de");
-
     }
 
     public function componentes(){

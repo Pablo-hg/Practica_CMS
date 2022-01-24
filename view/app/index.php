@@ -32,7 +32,9 @@
         <article class="col m12 l6">
             <div class="card">
                 <div class="card-image">
-                    <img src="<?php echo $_SESSION['public']."img/".$row->imagen ?>" alt="<?php echo $row->titulo ?>">
+                    <a href="<?php echo $_SESSION['home']."componente/".$row->slug ?>">
+                        <img src="<?php echo $_SESSION['public']."img/".$row->imagen ?>" alt="<?php echo $row->titulo ?>">
+                    </a>
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
@@ -56,4 +58,5 @@
             <i class="material-icons">close</i>
         </div>
     </form>
+    <img src="https://elchapuzasinformatico.com/wp-content/uploads/2022/01/B4nner-MSI-Alder-Lake.jpg%22">
 </aside>
