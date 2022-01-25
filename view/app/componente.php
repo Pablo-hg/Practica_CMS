@@ -3,21 +3,20 @@
 <div class="row">
     <img src="https://elchapuzasinformatico.com/wp-content/uploads/2022/01/B4nner-MSI-Intel-Z690.jpg" style="padding-top: 1rem">
     <h1>
-        <span><?php echo $datos->titulo ?></span>
+        <span><b><?php echo $datos->titulo ?></b></span>
     </h1>
     <h3>
         Por <span style="color: rgba(31,110,163,.8);"> <?php echo $datos->autor ?></span>
-        / <?php echo date("d/m/Y", strtotime($datos->fecha)) ?>
+        / <?php echo date("d/m/Y", strtotime($datos->fecha)) ?> /
+        <?php $tipo = $datos->review; if($tipo == 0) echo "componente";else echo "review" ?>
     </h3>
     <article class="col s12">
         <div class="card-image">
-            <a href="<?php echo $_SESSION['home']."componente/".$datos->slug ?>">
                 <img src="<?php echo $_SESSION['public']."img/".$datos->imagen ?>" alt="<?php echo $datos->titulo ?>">
             </a>
         </div>
         <div class="card-stacked">
             <div class="card-content">
-                <h2><?php echo $datos->titulo ?></h2>
                 <p class="card-action"><?php echo $datos->entradilla ?></p>
             </div>
         </div>

@@ -22,14 +22,14 @@ class ComponentesController
         $this->view = $viewHelper;
     }
 
-    //Listado de noticias
+    //Listado de componentes
     public function index(){
 
         //Permisos
         $this->view->permisos("componentes");
 
         //Recojo las noticias de la base de datos
-        $rowset = $this->db->query("SELECT * FROM Componentes ORDER BY fecha DESC");
+        $rowset = $this->db->query("SELECT * FROM Componentes WHERE review=0 ORDER BY fecha DESC");
 
         //Asigno resultados a un array de instancias del modelo
         $componentes = array();
@@ -38,8 +38,8 @@ class ComponentesController
         }
 
         $this->view->vista("admin","componentes/index", $componentes);
-
     }
+
 
     //Para activar o desactivar en admin
     public function activar($id){
@@ -110,13 +110,15 @@ class ComponentesController
 
     }
 
+
+
     public function borrar($id){
 
         //Permisos
         $this->view->permisos("noticias");
 
         //Obtengo la noticia
-        $rowset = $this->db->query("SELECT * FROM noticias WHERE id='$id' LIMIT 1");
+        $rowset = $this->db->query("SELECT * FROM Noticias WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
         $noticia = new Componentes($row);
 

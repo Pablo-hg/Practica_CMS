@@ -45,19 +45,22 @@ class AppController
 
     }
 
-    //sacar solo las noticias que son reviews
+    //sacar solo los componentes que son reviews
     public function reviews(){
         $rowset = $this->db->query("SELECT * FROM Componentes WHERE activo=1 AND review=1 ORDER BY fecha DESC");
         $reviews = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
             array_push($reviews,new Componentes($row));
         }
+        //Llamo a la vista
+        $this->view->vista("app", "componentes", $reviews);
+
     }
 
     public function componentes(){
 
         //Consulta a la bbdd
-        $rowset = $this->db->query("SELECT * FROM Componentes WHERE activo=1 ORDER BY fecha DESC");
+        $rowset = $this->db->query("SELECT * FROM Componentes WHERE activo=1 AND review=0 ORDER BY fecha DESC");
 
         //Asigno resultados a un array de instancias del modelo
         $componentes = array();

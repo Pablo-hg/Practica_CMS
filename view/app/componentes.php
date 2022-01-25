@@ -1,4 +1,9 @@
-<h1> Componentes </h1>
+<h1>
+    <?php /* $valor=strpos($_SESSION['home'],"componentes");
+    if($valor==true) echo "hola"
+    /*<?php $tipo = $datos->review; if($tipo == 0) echo "componente";else echo "review" ?>*/
+     $ruta = str_replace($_SESSION['home'], '', $_SERVER['REQUEST_URI']);echo $ruta?>
+ </h1>
 <div class="row">
     <?php foreach ($datos as $row){ ?>
         <article class="col m12 l6">

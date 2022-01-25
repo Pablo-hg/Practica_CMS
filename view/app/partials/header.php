@@ -3,13 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Noticias de Harry Potter</title>
+    <title>Práctica CMS</title>
 
     <!--CSS-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $_SESSION['public'] ?>css/app.css">
-
 </head>
 
 <body>
@@ -34,7 +33,10 @@
                 <a href="<?php echo $_SESSION['home'] ?>componentes" title="Componentes">Componentes</a>
             </li>
             <li>
-                <a href="<?php echo $_SESSION['home'] ?>discusiones" title="Foro">Foro</a>
+                <a href="<?php echo $_SESSION['home'] ?>reviews" title="Reviews">Reviews</a>
+            </li>
+            <li>
+                <a href="<?php echo $_SESSION['home'] ?>foro" title="Foro">Foro</a>
             </li>
             <li>
                 <a href="<?php echo $_SESSION['home'] ?>acerca-de" title="Acerca de">Acerca de</a>

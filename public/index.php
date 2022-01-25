@@ -78,11 +78,17 @@ switch ($ruta){
     case (strpos($ruta,"componente/") === 0): //Si la ruta empieza por "componente/"
         controlador()->componente(str_replace("componente/","",$ruta)); //El parámetro es lo que hayo después de "noticias"
         break;
-    case "discusiones":
-        controlador()->noticias();
+    case "reviews":
+        controlador()->reviews();
         break;
-    case (strpos($ruta,"discusion/") === 0): //Si la ruta empieza por "noticia/"
-        controlador()->noticia(str_replace("discusion/","",$ruta)); //El parámetro es lo que hayo después de "noticias"
+    case (strpos($ruta,"review/") === 0): //Si la ruta empieza por "noticia/"
+        controlador()->componente(str_replace("review/","",$ruta)); //El parámetro es lo que hayo después de "noticias"
+        break;
+    case "foro":
+        controlador()->discusiones();
+        break;
+    case (strpos($ruta,"hilo/") === 0): //Si la ruta empieza por "noticia/"
+        controlador()->discusion(str_replace("hilo/","",$ruta)); //El parámetro es lo que hayo después de "noticias"
         break;
 
     //Back-end
@@ -132,7 +138,7 @@ switch ($ruta){
     case (strpos($ruta,"admin/") === 0):
         controlador("usuarios")->entrar();
         break;
-    //Discusiones
+    //DiscusionesController
     case "admin/discusiones":
         controlador("discusiones")->index();
         break;

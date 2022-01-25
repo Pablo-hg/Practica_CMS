@@ -10,7 +10,6 @@
                 <?php } ?>
                 <a class="prev" onclick="plusSlides(-1)"><</a>
                 <a class="next" onclick="plusSlides(1)">></a>
-
             </div>
         </div>
     </section>
@@ -43,7 +42,19 @@
                     </div>
                     <div class="card-info">
                         <p>Por <span style="color: rgba(31,110,163,.8);"> <?php echo $row->autor ?></span>
-                            / <?php echo date("d/m/Y", strtotime($row->fecha)) ?></p>
+                            / <?php echo date("d/m/Y", strtotime($row->fecha)) ?> /
+                            <a href="<?php
+                                $tipo = $row->review;
+                                $categoria=null;
+                                if($tipo == 0){
+                                    $categoria="componente";
+                                }
+                                else $categoria= "review";
+                                echo $_SESSION['home'].$categoria?>s" style="color: rgba(31,110,163,.8)">
+                                <?php echo $categoria ?>
+                            </a>
+
+                        </p>
                     </div>
                 </div>
             </div>
