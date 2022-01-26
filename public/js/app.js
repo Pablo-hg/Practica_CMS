@@ -6,3 +6,12 @@ $(document).ready(function(){
 
 
 });
+
+var titulo = document.getElementById("titulo").innerHTML;
+
+if(titulo.includes('componentes')) {
+
+}
+
+
+

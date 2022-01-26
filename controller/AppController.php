@@ -90,7 +90,7 @@ class AppController
     public function discusiones(){
 
         //Consulta a la bbdd
-        $rowset = $this->db->query("SELECT * FROM Discusiones WHERE activo=1 ORDER BY fecha DESC");
+        $rowset = $this->db->query("SELECT * FROM Discusiones WHERE activo=1 AND foro=1 ORDER BY fecha DESC");
 
         //Asigno resultados a un array de instancias del modelo
         $discusiones = array();
@@ -106,14 +106,14 @@ class AppController
     public function discusion($slug){
 
         //Consulta a la bbdd
-        $rowset = $this->db->query("SELECT * FROM Discusiones WHERE activo=1 AND slug='$slug' LIMIT 1");
+        $rowset = $this->db->query("SELECT * FROM Discusiones WHERE activo=1 AND slug='$slug'");
 
-        //Asigno resultado a una instancia del modelo
-        $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $discusion = new Discusiones($row);
-
+        $hilo = array();
+        while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
+            array_push($hilo,new Discusiones($row));
+        }
         //Llamo a la vista
-        $this->view->vista("app", "discusion", $discusion);
+        $this->view->vista("app", "discusion", $hilo);
 
     }
 }

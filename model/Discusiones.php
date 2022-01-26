@@ -14,6 +14,7 @@ class Discusiones
     var $autor;
     var $imagen;
     var $likes;
+    var $foro;
 
     function __construct($data=null){
 
@@ -27,6 +28,7 @@ class Discusiones
         $this->autor = ($data) ? $data->autor : null;
         $this->imagen = ($data) ? $data->imagen : null;
         $this->likes = ($data) ? $data->likes : null;
+        $this->foro = ($data) ? $data->foro : null;
 
     }
 

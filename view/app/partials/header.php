@@ -26,27 +26,27 @@
 
         <!--Menú de navegación-->
         <ul id="nav-mobile" class="center-aling left hide-on-med-and-down">
-            <li class="active">
-                <a href="<?php echo $_SESSION['home'] ?>" title="Inicio" style="background-color: rgba(31,110,163,.8);">Inicio</a>
+            <li class="<?php echo ($_SESSION['ruta'] == '') ? "activo" : "" ?>">
+                <a href="<?php echo $_SESSION['home'] ?>" title="Inicio"">Inicio</a>
             </li>
-            <li>
+            <li class="<?php echo ($_SESSION['ruta'] == 'componentes') ? "activo" : "" ?>">
                 <a href="<?php echo $_SESSION['home'] ?>componentes" title="Componentes">Componentes</a>
             </li>
-            <li>
+            <li class="<?php echo ($_SESSION['ruta'] == 'reviews') ? "activo" : "" ?>">
                 <a href="<?php echo $_SESSION['home'] ?>reviews" title="Reviews">Reviews</a>
             </li>
             <li>
+            <li class="<?php echo ($_SESSION['ruta'] == 'foro') ? "activo" : "" ?>">
                 <a href="<?php echo $_SESSION['home'] ?>foro" title="Foro">Foro</a>
             </li>
-            <li>
+            <li class="<?php echo ($_SESSION['ruta'] == 'acerca-de') ? "activo" : "" ?>">
                 <a href="<?php echo $_SESSION['home'] ?>acerca-de" title="Acerca de">Acerca de</a>
             </li>
             <li>
                 <a href="<?php echo $_SESSION['home'] ?>admin" title="Panel de administración"
-                   target="_blank" style="background-color: #00c300;"> Admin </a>
+                   target="_blank" style="background-color: #00c300;"> Acceder </a>
             </li>
         </ul>
-
     </div>
 </nav>
 

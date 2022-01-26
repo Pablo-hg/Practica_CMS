@@ -60,7 +60,7 @@ function controlador($nombre=null){
 
 //Quito la ruta de la home a la que me están pidiendo
 $ruta = str_replace($_SESSION['home'], '', $_SERVER['REQUEST_URI']);
-
+$_SESSION['ruta'] = $ruta;
 //Encamino cada ruta al controlador y acción correspondientes
 switch ($ruta){
 

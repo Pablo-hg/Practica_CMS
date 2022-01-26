@@ -1,7 +1,5 @@
-<h1>
-    <?php /* $valor=strpos($_SESSION['home'],"componentes");
-    if($valor==true) echo "hola"
-    /*<?php $tipo = $datos->review; if($tipo == 0) echo "componente";else echo "review" ?>*/
+<h1 id="titulo">
+    <?php
      $ruta = str_replace($_SESSION['home'], '', $_SERVER['REQUEST_URI']);echo $ruta?>
  </h1>
 <div class="row">

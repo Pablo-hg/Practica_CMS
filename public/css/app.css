@@ -11,6 +11,8 @@ body{
     flex-direction: column;
     background-image: url("https://elchapuzasinformatico.com/wp-content/uploads/2022/01/220117-1080p-gd24.jpg");
     background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 header a img{
@@ -22,6 +24,10 @@ header a img{
 header img{
     padding-left: 9rem;
     padding-top: 3rem;
+}
+
+.activo{
+    background-color: rgba(31,110,163,.8);
 }
 
 nav{
@@ -264,6 +270,7 @@ h3{
 
 .cajita{
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 
@@ -295,7 +302,13 @@ h3{
     text-align: center;
 }
 .hilo article{
-    width: 65%;
+    width: 100%;
     border: 1px solid #d8d8d8;
     background-color: #ececec;
+    margin-bottom: 20px;
+    height: 245px;
+}
+
+ article h1{
+    font-size: 30px;
 }
