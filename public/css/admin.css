@@ -1,75 +1,91 @@
 /* LAYOUT *************************************************************************************************************/
 
+/* LAYOUT *************************************************************************************************************/
+
 html{
     color: #333;
 }
+
 
 body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-image: url("https://elchapuzasinformatico.com/wp-content/uploads/2022/01/220117-1080p-gd24.jpg");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+header a img{
+    width: 10rem;
+    padding: 1rem 0;
+    float: left;
+    margin-left: 430px;
+}
+header img{
+    padding-left: 9rem;
+    padding-top: 3rem;
+}
+
+.activoadmin{
+    background-color: rgba(31,110,163,.8);
 }
 
 nav{
-    background-color: #333;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    padding: 0 2rem;
+    background-color: #19232d;
+    max-width: 1170px;
+    margin: 0 auto;
+    text-transform: uppercase;
 }
 
-nav img{
-    width: 8rem;
-    padding-top: 0.8rem;
+nav li:hover{
+    background-color: rgba(31,110,163,.8);
 }
 
 main {
     flex: 1 0 auto;
     width: 100%;
-    max-width: 1920px;
+    max-width: 1170px;
     padding: 0 2rem;
     margin: 0 auto;
-}
-
-header h1{
-    font-size: 3rem;
-    margin: 1rem 0 0 0;
-}
-
-header h2{
-    font-size: 2rem;
-    margin: 1rem 0;
+    background-color: white;
 }
 
 footer{
-    background-color: #333;
+    background-color: #111;
     color: white;
     padding: 1rem 0;
+    margin: auto 24.44rem;
+    margin-bottom: 1rem;
 }
 
-footer a{
+footer a {
     color: white;
 }
-
 footer a:hover{
     text-decoration: underline;
 }
 
 /* SECTION ************************************************************************************************************/
 
-section h3{
-    font-size: 1.5rem;
-    border-bottom: 1px solid #333;
-    padding-bottom: 0.3rem;
-    font-weight:bold;
+main{
+    background-color: #ebebeb;
 }
 
-section h3 a{
-    color: #333;
+/* ACCEDER *****************************/
+.row{
+    border: 1px Solid black;
+    border-radius: 5px;
+    background-color: white;
 }
 
-section h3 span{
-    font-weight:normal;
-    color: #444;
+p.aviso{
+    background-color: #19232d;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px;
 }
 
 .btn{
@@ -77,59 +93,11 @@ section h3 span{
 }
 
 .btn:hover{
-    background-color: #333;
+    background-color: purple;
 }
 
-article h4{
-    font-size: 1.5rem;
-}
 
-article .card-info{
-    position: relative;
-    bottom: 3rem;
-    left: 1.5rem;
-}
 
-.card.horizontal.small .card-image{
-    max-height: 70%;
-}
 
-.card.horizontal.small .card-image img{
-    margin-top: 20%;
-}
 
-.card.horizontal.noticia{
-    border: none;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-}
 
-.card.horizontal.admin h4{
-    margin: 0 0 0.5rem 0.5rem;
-}
-
-.card.horizontal.admin strong{
-    margin-left: 0.5rem;
-}
-
-.card.horizontal.admin img{
-    height: 3rem;
-    margin: 1.5rem 0 0 2rem;
-}
-
-.toast{
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    color: #333;
-    cursor: pointer;
-}
-
-.toast strong{
-    padding: 0 0.2rem;
-}
-
-form p{
-    padding-left: 0.8rem;
-}

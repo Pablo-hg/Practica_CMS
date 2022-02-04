@@ -1,15 +1,9 @@
 <h3>
-    <a href="<?php echo $_SESSION['home'] ?>admin" title="Inicio">Inicio</a> <span>| </span>
-    <a href="<?php echo $_SESSION['home'] ?>admin/noticias" title="Noticias">Noticias</a> <span>| </span>
-    <?php if ($datos->id){ ?>
-        <span>Editar <?php echo $datos->titulo ?></span>
-    <?php } else { ?>
-        <span>Nueva noticia</span>
-    <?php } ?>
+    Nuevo Componente
 </h3>
 <div class="row">
     <?php $id = ($datos->id) ? $datos->id : "nuevo" ?>
-    <form class="col s12" method="POST" enctype="multipart/form-data" action="<?php echo $_SESSION['home'] ?>admin/noticias/editar/<?php echo $id ?>">
+    <form class="col s12" method="POST" enctype="multipart/form-data" action="<?php echo $_SESSION['home'] ?>admin/componentes/editar/<?php echo $id ?>">
         <div class="col m12 l6">
             <div class="row">
                 <div class="input-field col s12">
@@ -56,7 +50,7 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <a href="<?php echo $_SESSION['home'] ?>admin/noticias" title="Volver">
+                <a href="<?php echo $_SESSION['home'] ?>admin/componentes" title="Volver">
                     <button class="btn waves-effect waves-light" type="button">Volver
                         <i class="material-icons right">replay</i>
                     </button>

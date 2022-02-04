@@ -40,49 +40,54 @@ class TrabajadorController
         }
         //Si ha pulsado el botón de acceder, tramito el formulario
         else if (isset($_POST["acceder"])){
-
             //Recupero los datos del formulario
             $campo_usuario = filter_input(INPUT_POST, "usuario", FILTER_SANITIZE_STRING);
             $campo_clave = filter_input(INPUT_POST, "clave", FILTER_SANITIZE_STRING);
 
             //Busco al usuario en la base de datos y si está activo
-            $rowset = $this->db->query("SELECT * FROM usuarios WHERE usuario='$campo_usuario' AND activo=1 LIMIT 1");
+            $rowset = $this->db->query("SELECT * FROM Trabajadores WHERE usuario='$campo_usuario' AND activo=1 LIMIT 1");
 
             //Asigno resultado a una instancia del modelo
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
-            $usuario = new Trabajadores($row);
+            $trabajador = new Trabajadores($row);
 
             //Si existe el usuario
-            if ($usuario->usuario){
+            if ($trabajador->usuario){
                 //Compruebo la clave
-                if (password_verify($campo_clave,$usuario->clave)) {
-
+                if (password_verify($campo_clave,$trabajador->clave)) {
                     //Asigno el usuario y los permisos la sesión
-                    $_SESSION["usuario"] = $usuario->usuario;
-                    $_SESSION["usuarios"] = $usuario->usuarios;
-                    $_SESSION["noticias"] = $usuario->noticias;
+                    $_SESSION["usuario"] = $trabajador->usuario;
+                    $_SESSION["trabajadores"] = $trabajador->trabajadores;
+                    $_SESSION["componentes"] = $trabajador->componentes;
+                    $_SESSION["reviews"] = $trabajador->reviews;
+                    $_SESSION["discusiones"] = $trabajador->discusiones;
+                    $_SESSION["hilo"] = $trabajador->hilo;
 
                     //Guardo la fecha de último acceso
                     $ahora = new \DateTime("now", new \DateTimeZone("Europe/Madrid"));
                     $fecha = $ahora->format("Y-m-d H:i:s");
-                    $this->db->exec("UPDATE usuarios SET fecha_acceso='$fecha' WHERE usuario='$campo_usuario'");
+                    $this->db->exec("UPDATE Trabajadores SET fecha_acceso='$fecha' WHERE usuario='$campo_usuario'");
 
                     //Redirección con mensaje
+                    //echo "acceso correcto";
                     $this->view->redireccionConMensaje("admin","green","Bienvenido al panel de administración.");
+
                 }
                 else{
+                    //echo "acceso incorrecto";
                     //Redirección con mensaje
                     $this->view->redireccionConMensaje("admin","red","Contraseña incorrecta.");
                 }
             }
             else{
                 //Redirección con mensaje
-                $this->view->redireccionConMensaje("admin","red","No existe ningún usuario con ese nombre.");
+                echo "usuario no existe";
+                //$this->view->redireccionConMensaje("admin","red","No existe ningún usuario con ese nombre.");
             }
         }
         //Le llevo a la página de acceso
         else{
-            $this->view->vista("admin","usuarios/entrar");
+            $this->view->vista("admin","trabajadores/entrar");
         }
 
     }
@@ -97,14 +102,14 @@ class TrabajadorController
 
     }
 
-    //Listado de usuarios
+    //Listado de trabajadores
     public function index(){
 
         //Permisos
-        $this->view->permisos("usuarios");
+        $this->view->permisos("trabajadores");
 
-        //Recojo los usuarios de la base de datos
-        $rowset = $this->db->query("SELECT * FROM usuarios ORDER BY usuario ASC");
+        //Recojo los trabajadores de la base de datos
+        $rowset = $this->db->query("SELECT * FROM trabajadores ORDER BY usuario ASC");
 
         //Asigno resultados a un array de instancias del modelo
         $usuarios = array();
@@ -112,7 +117,7 @@ class TrabajadorController
             array_push($usuarios,new Trabajadores($row));
         }
 
-        $this->view->vista("admin","usuarios/index", $usuarios);
+        $this->view->vista("admin","trabajadores/index", $usuarios);
 
     }
 
@@ -120,33 +125,33 @@ class TrabajadorController
     public function activar($id){
 
         //Permisos
-        $this->view->permisos("usuarios");
+        $this->view->permisos("trabajadores");
 
         //Obtengo el usuario
-        $rowset = $this->db->query("SELECT * FROM usuarios WHERE id='$id' LIMIT 1");
+        $rowset = $this->db->query("SELECT * FROM trabajadores WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
         $usuario = new Trabajadores($row);
 
         if ($usuario->activo == 1){
 
             //Desactivo el usuario
-            $consulta = $this->db->exec("UPDATE usuarios SET activo=0 WHERE id='$id'");
+            $consulta = $this->db->exec("UPDATE trabajadores SET activo=0 WHERE id='$id'");
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/usuarios","green","El usuario <strong>$usuario->usuario</strong> se ha desactivado correctamente.") :
-                $this->view->redireccionConMensaje("admin/usuarios","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("admin/trabajadores","green","El usuario <strong>$usuario->usuario</strong> se ha desactivado correctamente.") :
+                $this->view->redireccionConMensaje("admin/trabajadores","red","Hubo un error al guardar en la base de datos.");
         }
 
         else{
 
             //Activo el usuario
-            $consulta = $this->db->exec("UPDATE usuarios SET activo=1 WHERE id='$id'");
+            $consulta = $this->db->exec("UPDATE trabajadores SET activo=1 WHERE id='$id'");
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/usuarios","green","El usuario <strong>$usuario->usuario</strong> se ha activado correctamente.") :
-                $this->view->redireccionConMensaje("admin/usuarios","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("admin/trabajadores","green","El usuario <strong>$usuario->usuario</strong> se ha activado correctamente.") :
+                $this->view->redireccionConMensaje("admin/trabajadores","red","Hubo un error al guardar en la base de datos.");
         }
 
     }
@@ -154,35 +159,35 @@ class TrabajadorController
     public function borrar($id){
 
         //Permisos
-        $this->view->permisos("usuarios");
+        $this->view->permisos("trabajadores");
 
         //Borro el usuario
-        $consulta = $this->db->exec("DELETE FROM usuarios WHERE id='$id'");
+        $consulta = $this->db->exec("DELETE FROM trabajadores WHERE id='$id'");
 
         //Mensaje y redirección
         ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-            $this->view->redireccionConMensaje("admin/usuarios","green","El usuario se ha borrado correctamente.") :
-            $this->view->redireccionConMensaje("admin/usuarios","red","Hubo un error al guardar en la base de datos.");
+            $this->view->redireccionConMensaje("admin/trabajadores","green","El usuario se ha borrado correctamente.") :
+            $this->view->redireccionConMensaje("admin/trabajadores","red","Hubo un error al guardar en la base de datos.");
 
     }
 
     public function crear(){
 
         //Permisos
-        $this->view->permisos("usuarios");
+        $this->view->permisos("trabajadores");
 
         //Creo un nuevo usuario vacío
         $usuario = new Trabajadores();
 
         //Llamo a la ventana de edición
-        $this->view->vista("admin","usuarios/editar", $usuario);
+        $this->view->vista("admin","trabajadores/editar", $usuario);
 
     }
 
     public function editar($id){
 
         //Permisos
-        $this->view->permisos("usuarios");
+        $this->view->permisos("trabajadores");
 
         //Si ha pulsado el botón de guardar
         if (isset($_POST["guardar"])){
@@ -190,8 +195,8 @@ class TrabajadorController
             //Recupero los datos del formulario
             $usuario = filter_input(INPUT_POST, "usuario", FILTER_SANITIZE_STRING);
             $clave = filter_input(INPUT_POST, "clave", FILTER_SANITIZE_STRING);
-            $usuarios = (filter_input(INPUT_POST, 'usuarios', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
-            $noticias = (filter_input(INPUT_POST, 'noticias', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
+            $usuarios = (filter_input(INPUT_POST, 'trabajadores', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
+            $noticias = (filter_input(INPUT_POST, 'componentes', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
             $cambiar_clave = (filter_input(INPUT_POST, 'cambiar_clave', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
 
             //Encripto la clave
@@ -200,20 +205,20 @@ class TrabajadorController
             if ($id == "nuevo"){
 
                 //Creo un nuevo usuario
-                $this->db->exec("INSERT INTO usuarios (usuario, clave, noticias, usuarios) VALUES ('$usuario','$clave_encriptada',$noticias,$usuarios)");
+                $this->db->exec("INSERT INTO trabajadores (usuario, clave, componentes, trabajadores) VALUES ('$usuario','$clave_encriptada',$noticias,$usuarios)");
 
                 //Mensaje y redirección
-                $this->view->redireccionConMensaje("admin/usuarios","green","El usuario <strong>$usuario</strong> se creado correctamente.");
+                $this->view->redireccionConMensaje("admin/trabajadores","green","El usuario <strong>$usuario</strong> se creado correctamente.");
             }
             else{
 
                 //Actualizo el usuario
                 ($cambiar_clave) ?
-                    $this->db->exec("UPDATE usuarios SET usuario='$usuario',clave='$clave_encriptada',noticias=$noticias,usuarios=$usuarios WHERE id='$id'") :
-                    $this->db->exec("UPDATE usuarios SET usuario='$usuario',noticias=$noticias,usuarios=$usuarios WHERE id='$id'");
+                    $this->db->exec("UPDATE trabajadores SET usuario='$usuario',clave='$clave_encriptada',componentes=$noticias,trabajadores=$usuarios WHERE id='$id'") :
+                    $this->db->exec("UPDATE trabajadores SET usuario='$usuario',componentes=$noticias,trabajadores=$usuarios WHERE id='$id'");
 
                 //Mensaje y redirección
-                $this->view->redireccionConMensaje("admin/usuarios","green","El usuario <strong>$usuario</strong> se actualizado correctamente.");
+                $this->view->redireccionConMensaje("admin/trabajadores","green","El usuario <strong>$usuario</strong> se actualizado correctamente.");
             }
         }
 
@@ -221,12 +226,12 @@ class TrabajadorController
         else{
 
             //Obtengo el usuario
-            $rowset = $this->db->query("SELECT * FROM usuarios WHERE id='$id' LIMIT 1");
+            $rowset = $this->db->query("SELECT * FROM trabajadores WHERE id='$id' LIMIT 1");
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
             $usuario = new Trabajadores($row);
 
             //Llamo a la ventana de edición
-            $this->view->vista("admin","usuarios/editar", $usuario);
+            $this->view->vista("admin","trabajadores/editar", $usuario);
         }
 
     }

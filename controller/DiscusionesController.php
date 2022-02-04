@@ -29,7 +29,7 @@ class DiscusionesController
         //Permisos
         $this->view->permisos("discusiones");
 
-        //Recojo las noticias de la base de datos
+        //Recojo las componentes de la base de datos
         $rowset = $this->db->query("SELECT * FROM Discusiones ORDER BY fecha DESC");
 
         //Asigno resultados a un array de instancias del modelo

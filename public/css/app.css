@@ -37,6 +37,7 @@ nav{
     text-transform: uppercase;
 }
 
+
 nav li:hover{
     background-color: rgba(31,110,163,.8);
 }

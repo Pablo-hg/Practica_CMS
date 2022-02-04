@@ -85,6 +85,7 @@ class AppController
         //Llamo a la vista
         $this->view->vista("app", "componente", $componente);
 
+
     }
 
     public function discusiones(){

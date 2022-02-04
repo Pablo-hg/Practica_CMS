@@ -10,7 +10,7 @@ use App\Controller\ComponentesController;
 use App\Controller\TrabajadorController;
 use App\Controller\DiscusionesController;
 
-//echo password_hash("1234Abcd!",  PASSWORD_BCRYPT, ['cost'=>12]); //-->para añadir usuarios
+//echo password_hash("Madrid01",  PASSWORD_BCRYPT, ['cost'=>12]); //-->para añadir trabajadores
 
 
 /*
@@ -51,8 +51,8 @@ function controlador($nombre=null){
 
     switch($nombre){
         default: return new AppController; //Front-end
-        case "componentes": return new ComponentesController; //Back-end noticias
-        case "usuarios": return new TrabajadorController; //Autentificacion y Back-end de usuarios
+        case "componentes": return new ComponentesController; //Back-end componentes
+        case "trabajadores": return new TrabajadorController; //Autentificacion y Back-end de trabajadores
         case "discusiones": return new DiscusionController;
     }
 
@@ -76,69 +76,69 @@ switch ($ruta){
         controlador()->componentes();
         break;
     case (strpos($ruta,"componente/") === 0): //Si la ruta empieza por "componente/"
-        controlador()->componente(str_replace("componente/","",$ruta)); //El parámetro es lo que hayo después de "noticias"
+        controlador()->componente(str_replace("componente/","",$ruta)); //El parámetro es lo que hayo después de "componentes"
         break;
     case "reviews":
         controlador()->reviews();
         break;
     case (strpos($ruta,"review/") === 0): //Si la ruta empieza por "noticia/"
-        controlador()->componente(str_replace("review/","",$ruta)); //El parámetro es lo que hayo después de "noticias"
+        controlador()->componente(str_replace("review/","",$ruta)); //El parámetro es lo que hayo después de "componentes"
         break;
     case "foro":
         controlador()->discusiones();
         break;
     case (strpos($ruta,"hilo/") === 0): //Si la ruta empieza por "noticia/"
-        controlador()->discusion(str_replace("hilo/","",$ruta)); //El parámetro es lo que hayo después de "noticias"
+        controlador()->discusion(str_replace("hilo/","",$ruta)); //El parámetro es lo que hayo después de "componentes"
         break;
 
     //Back-end
     //General
     case "admin":
     case "admin/entrar":
-        controlador("usuarios")->entrar();
+        controlador("trabajadores")->entrar();
         break;
     case "admin/salir":
-        controlador("usuarios")->salir();
+        controlador("trabajadores")->salir();
         break;
-    case "admin/usuarios"://listar usuarios
-        controlador("usuarios")->index();
+    case "admin/trabajadores"://listar trabajadores
+        controlador("trabajadores")->index();
         break;
     //Usuarios
-    case "admin/usuarios/crear":
-        controlador("usuarios")->crear();
+    case "admin/trabajadores/crear":
+        controlador("trabajadores")->crear();
         break;
-    case (strpos($ruta,"admin/usuarios/editar/") === 0)://editar el usuario
-        controlador("usuarios")->editar(str_replace("admin/usuarios/editar/","",$ruta));
+    case (strpos($ruta,"admin/trabajadores/editar/") === 0)://editar el usuario
+        controlador("trabajadores")->editar(str_replace("admin/trabajadores/editar/","",$ruta));
         break;
-    case (strpos($ruta,"admin/usuarios/activar/") === 0):
-        controlador("usuarios")->activar(str_replace("admin/usuarios/activar/","",$ruta));
+    case (strpos($ruta,"admin/trabajadores/activar/") === 0):
+        controlador("trabajadores")->activar(str_replace("admin/trabajadores/activar/","",$ruta));
         break;
-    case (strpos($ruta,"admin/usuarios/borrar/") === 0)://confirmacion para borrar
-        controlador("usuarios")->borrar(str_replace("admin/usuarios/borrar/","",$ruta));
+    case (strpos($ruta,"admin/trabajadores/borrar/") === 0)://confirmacion para borrar
+        controlador("trabajadores")->borrar(str_replace("admin/trabajadores/borrar/","",$ruta));
         break;
-    //Noticias
-    case "admin/noticias":
-        controlador("noticias")->index();
+    //Componentes
+    case "admin/componentes":
+        controlador("componentes")->index();
         break;
-    case "admin/noticias/crear":
-        controlador("noticias")->crear();
+    case "admin/componentes/crear":
+        controlador("componentes")->crear();
         break;
-    case (strpos($ruta,"admin/noticias/editar/") === 0):
-        controlador("noticias")->editar(str_replace("admin/noticias/editar/","",$ruta));
+    case (strpos($ruta,"admin/componentes/editar/") === 0):
+        controlador("componentes")->editar(str_replace("admin/componentes/editar/","",$ruta));
         break;
-    case (strpos($ruta,"admin/noticias/activar/") === 0):
-        controlador("noticias")->activar(str_replace("admin/noticias/activar/","",$ruta));
+    case (strpos($ruta,"admin/componentes/activar/") === 0):
+        controlador("componentes")->activar(str_replace("admin/componentes/activar/","",$ruta));
         break;
-    case (strpos($ruta,"admin/noticias/home/") === 0):
-        controlador("noticias")->home(str_replace("admin/noticias/home/","",$ruta));
+    case (strpos($ruta,"admin/componentes/home/") === 0):
+        controlador("componentes")->home(str_replace("admin/componentes/home/","",$ruta));
         break;
-    case (strpos($ruta,"admin/noticias/borrar/") === 0):
-        controlador("noticias")->borrar(str_replace("admin/noticias/borrar/","",$ruta));
+    case (strpos($ruta,"admin/componentes/borrar/") === 0):
+        controlador("componentes")->borrar(str_replace("admin/componentes/borrar/","",$ruta));
         break;
     case (strpos($ruta,"admin/") === 0):
-        controlador("usuarios")->entrar();
+        controlador("trabajadores")->entrar();
         break;
-    //DiscusionesController
+    //Discusiones
     case "admin/discusiones":
         controlador("discusiones")->index();
         break;

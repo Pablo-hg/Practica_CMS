@@ -28,7 +28,7 @@ class ComponentesController
         //Permisos
         $this->view->permisos("componentes");
 
-        //Recojo las noticias de la base de datos
+        //Recojo las componentes de la base de datos
         $rowset = $this->db->query("SELECT * FROM Componentes WHERE review=0 ORDER BY fecha DESC");
 
         //Asigno resultados a un array de instancias del modelo
@@ -47,19 +47,19 @@ class ComponentesController
         //Permisos
         $this->view->permisos("componentes");
 
-        //Obtengo la noticia
+        //Obtengo el componente
         $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $componente = new Componente($row);
+        $componente = new Componentes($row);
 
         if ($componente->activo == 1){
-
+            echo "hola";
             //Desactivo la noticia
             $consulta = $this->db->exec("UPDATE Componentes SET activo=0 WHERE id='$id'");
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/componentes","green","El componentes <strong>$componente->titulo</strong> se ha desactivado correctamente.") :
+                $this->view->redireccionConMensaje("admin/componentes","green","El componente <strong>$componente->titulo</strong> se ha desactivado correctamente.") :
                 $this->view->redireccionConMensaje("admin/componentes","red","Hubo un error al guardar en la base de datos.");
         }
 
@@ -82,30 +82,30 @@ class ComponentesController
         $this->view->permisos("componentes");
 
         //Obtengo la noticia
-        $rowset = $this->db->query("SELECT * FROM noticias WHERE id='$id' LIMIT 1");
+        $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $noticia = new Componentes($row);
+        $componente = new Componentes($row);
 
-        if ($noticia->home == 1){
+        if ($componente->home == 1){
 
             //Quito la noticia de la home
-            $consulta = $this->db->exec("UPDATE noticias SET home=0 WHERE id='$id'");
+            $consulta = $this->db->exec("UPDATE Componentes SET home=0 WHERE id='$id'");
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/noticias","green","La noticia <strong>$noticia->titulo</strong> ya no se muestra en la home.") :
-                $this->view->redireccionConMensaje("admin/noticias","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("admin/componentes","green","La noticia <strong>$componente->titulo</strong> ya no se muestra en la home.") :
+                $this->view->redireccionConMensaje("admin/componentes","red","Hubo un error al guardar en la base de datos.");
         }
 
         else{
 
             //Muestro la noticia en la home
-            $consulta = $this->db->exec("UPDATE noticias SET home=1 WHERE id='$id'");
+            $consulta = $this->db->exec("UPDATE Componentes SET home=1 WHERE id='$id'");
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/noticias","green","La noticia <strong>$noticia->titulo</strong> ahora se muestra en la home.") :
-                $this->view->redireccionConMensaje("admin/noticias","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("admin/componentes","green","La noticia <strong>$componente->titulo</strong> ahora se muestra en la home.") :
+                $this->view->redireccionConMensaje("admin/componentes","red","Hubo un error al guardar en la base de datos.");
         }
 
     }
@@ -115,15 +115,15 @@ class ComponentesController
     public function borrar($id){
 
         //Permisos
-        $this->view->permisos("noticias");
+        $this->view->permisos("componentes");
 
         //Obtengo la noticia
-        $rowset = $this->db->query("SELECT * FROM Noticias WHERE id='$id' LIMIT 1");
+        $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
         $noticia = new Componentes($row);
 
         //Borro la noticia
-        $consulta = $this->db->exec("DELETE FROM noticias WHERE id='$id'");
+        $consulta = $this->db->exec("DELETE FROM Componentes WHERE id='$id'");
 
         //Borro la imagen asociada
         $archivo = $_SESSION['public']."img/".$noticia->imagen;
@@ -135,28 +135,25 @@ class ComponentesController
 
         //Mensaje y redirección
         ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-            $this->view->redireccionConMensaje("admin/noticias","green","La noticia se ha borrado correctamente$texto_imagen.") :
-            $this->view->redireccionConMensaje("admin/noticias","red","Hubo un error al guardar en la base de datos.");
+            $this->view->redireccionConMensaje("admin/componentes","green","La noticia se ha borrado correctamente$texto_imagen.") :
+            $this->view->redireccionConMensaje("admin/componentes","red","Hubo un error al guardar en la base de datos.");
 
     }
 
     public function crear(){
 
         //Permisos
-        $this->view->permisos("noticias");
-
+        $this->view->permisos("componentes");
         //Creo un nuevo usuario vacío
-        $noticia = new Componentes();
-
+        $componente = new Componentes();
         //Llamo a la ventana de edición
-        $this->view->vista("admin","noticias/editar", $noticia);
-
+        $this->view->vista("admin","componentes/editar", $componente);
     }
 
     public function editar($id){
 
         //Permisos
-        $this->view->permisos("noticias");
+        $this->view->permisos("componentes");
 
         //Si ha pulsado el botón de guardar
         if (isset($_POST["guardar"])){
@@ -183,7 +180,7 @@ class ComponentesController
             if ($id == "nuevo"){
 
                 //Creo una nueva noticia
-                $consulta = $this->db->exec("INSERT INTO noticias 
+                $consulta = $this->db->exec("INSERT INTO Componentes 
                     (titulo, entradilla, autor, fecha, texto, slug, imagen) VALUES 
                     ('$titulo','$entradilla','$autor','$fecha','$texto','$slug','$imagen')");
 
@@ -199,13 +196,13 @@ class ComponentesController
 
                 //Mensaje y redirección
                 ($consulta > 0) ?
-                    $this->view->redireccionConMensaje("admin/noticias","green","La noticia <strong>$titulo</strong> se creado correctamente.".$texto_img) :
-                    $this->view->redireccionConMensaje("admin/noticias","red","Hubo un error al guardar en la base de datos.");
+                    $this->view->redireccionConMensaje("admin/componentes","green","El componente <strong>$titulo</strong> se creado correctamente.".$texto_img) :
+                    $this->view->redireccionConMensaje("admin/componentes","red","Hubo un error al guardar en la base de datos.");
             }
             else{
 
                 //Actualizo la noticia
-                $this->db->exec("UPDATE noticias SET 
+                $this->db->exec("UPDATE Componentes SET 
                     titulo='$titulo',entradilla='$entradilla',autor='$autor',
                     fecha='$fecha',texto='$texto',slug='$slug' WHERE id='$id'");
 
@@ -213,7 +210,7 @@ class ComponentesController
                 if ($imagen){
                     if (is_uploaded_file($imagen_recibida['tmp_name']) && move_uploaded_file($imagen_recibida['tmp_name'], $imagen_subida)){
                         $texto_img = " La imagen se ha subido correctamente.";
-                        $this->db->exec("UPDATE noticias SET imagen='$imagen' WHERE id='$id'");
+                        $this->db->exec("UPDATE Componentes SET imagen='$imagen' WHERE id='$id'");
                     }
                     else{
                         $texto_img = " Hubo un problema al subir la imagen.";
@@ -221,21 +218,21 @@ class ComponentesController
                 }
 
                 //Mensaje y redirección
-                $this->view->redireccionConMensaje("admin/noticias","green","La noticia <strong>$titulo</strong> se guardado correctamente.".$texto_img);
+                $this->view->redireccionConMensaje("admin/componentes","green","El componente <strong>$titulo</strong> se guardado correctamente.".$texto_img);
 
             }
         }
 
-        //Si no, obtengo noticia y muestro la ventana de edición
+        //Si no, obtengo el componente y muestro la ventana de edición
         else{
 
             //Obtengo la noticia
-            $rowset = $this->db->query("SELECT * FROM noticias WHERE id='$id' LIMIT 1");
+            $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
-            $noticia = new Componentes($row);
+            $componente = new Componentes($row);
 
             //Llamo a la ventana de edición
-            $this->view->vista("admin","noticias/editar", $noticia);
+            $this->view->vista("admin","componentes/editar", $componente);
         }
 
     }

@@ -12,6 +12,8 @@ class Trabajadores {
     var $trabajadores;
     var $componentes;
     var $discusiones;
+    var $hilo;
+    var $reviews;
 
     function __construct($data=null){
 
@@ -23,6 +25,8 @@ class Trabajadores {
         $this->trabajadores = ($data) ? $data->trabajadores : null;
         $this->componentes = ($data) ? $data->componentes : null;
         $this->discusiones = ($data) ? $data->discusiones : null;
+        $this->hilo = ($data) ? $data->hilo : null;
+        $this->reviews = ($data) ? $data->reviews : null;
 
     }
 
