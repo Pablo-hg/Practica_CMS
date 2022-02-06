@@ -8,7 +8,7 @@ $(document).ready(function(){
     var input_texto = $("input[name=texto-mensaje]");
     if (input_tipo.length && input_texto.length){
         //var contenido = $('<span class="'+ input_tipo.val() +'">'+ input_texto.val() +'</span>');
-        M.toast({html: input_texto.val(), classes: input_tipo.val() + " lighten-5"});
+        M.toast({html: input_texto.val(), classes: input_tipo.val()});
     }
 
     //Ocultar toast

@@ -1,4 +1,4 @@
-<h3> Componentes</h3>
+<h3> Reviews</h3>
 <div class="row">
     <!--Nuevo-->
     <article class="col s12 l6">
@@ -6,10 +6,10 @@
             <div class="card-stacked">
                 <div class="card-content">
                     <i class="grey-text material-icons medium">image</i>
-                    <h4 class="grey-text"> nuevo componente </h4><br><br>
+                    <h4 class="grey-text"> nueva review </h4><br><br>
                 </div>
                 <div class="card-action">
-                    <a href="<?php echo $_SESSION['home']."admin/componentes/crear" ?>" title="Añadir nuevo componente">
+                    <a href="<?php echo $_SESSION['home']."admin/reviews/crear" ?>" title="Añadir nueva review">
                         <i class="material-icons">add_circle</i>
                     </a>
                 </div>
@@ -36,16 +36,16 @@
                         <strong>Fecha:</strong> <?php echo date("d/m/Y", strtotime($row->fecha)) ?>
                     </div>
                     <div class="card-action">
-                        <a href="<?php echo $_SESSION['home']."admin/componentes/editar/".$row->id ?>" title="Editar"> <i class="material-icons">edit</i></a>
+                        <a href="<?php echo $_SESSION['home']."admin/reviews/editar/".$row->id ?>" title="Editar"> <i class="material-icons">edit</i></a>
                         <?php $title = ($row->activo == 1) ? "Desactivar" : "Activar" ?>
                         <?php $color = ($row->activo == 1) ? "green-text" : "red-text" ?>
                         <?php $icono = ($row->activo == 1) ? "mood" : "mood_bad" ?>
-                        <a href="<?php echo $_SESSION['home']."admin/componentes/activar/".$row->id ?>" title="<?php echo $title ?>">
+                        <a href="<?php echo $_SESSION['home']."admin/reviews/activar/".$row->id ?>" title="<?php echo $title ?>">
                             <i class="<?php echo $color ?> material-icons"><?php echo $icono ?></i>
                         </a>
                         <?php $title = ($row->home == 1) ? "Quitar de la home" : "Mostrar en la home" ?>
                         <?php $color = ($row->home == 1) ? "green-text" : "red-text" ?>
-                        <a href="<?php echo $_SESSION['home']."admin/componentes/home/".$row->id ?>" title="<?php echo $title ?>">
+                        <a href="<?php echo $_SESSION['home']."admin/reviews/home/".$row->id ?>" title="<?php echo $title ?>">
                             <i class="<?php echo $color ?> material-icons">home</i>
                         </a>
                         <a href="#" class="activator" title="Borrar">
@@ -60,7 +60,7 @@
                         ¿Está seguro de que quiere borrar la noticia<strong><?php echo $row->titulo ?></strong>?<br>
                         Esta acción no se puede deshacer.
                     </p>
-                    <a href="<?php echo $_SESSION['home']."admin/componentes/borrar/".$row->id ?>" title="Borrar">
+                    <a href="<?php echo $_SESSION['home']."admin/reviews/borrar/".$row->id ?>" title="Borrar">
                         <button class="btn waves-effect waves-light" type="button">Borrar
                             <i class="material-icons right">delete</i>
                         </button>

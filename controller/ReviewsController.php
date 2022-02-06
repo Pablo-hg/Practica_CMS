@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Controller;
 
 use App\Helper\ViewHelper;
 use App\Helper\DbHelper;
 use App\Model\Componentes;
 
-
-class ComponentesController
+class ReviewsController
 {
     var $db;
     var $view;
@@ -27,21 +27,20 @@ class ComponentesController
 
     //Listado de componentes
     public function index(){
-
         //Permisos
         $this->view->permisos("componentes");
 
         //Recojo las componentes de la base de datos
-        $rowset = $this->db->query("SELECT * FROM Componentes WHERE review=0 ORDER BY fecha DESC");
+        $rowset = $this->db->query("SELECT * FROM Componentes WHERE review=1 ORDER BY fecha DESC");
 
 
         //Asigno resultados a un array de instancias del modelo
-        $componentes = array();
+        $reviews = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($componentes,new Componentes($row));
+            array_push($reviews,new Componentes($row));
         }
 
-        $this->view->vista("admin","componentes/index", $componentes);
+        $this->view->vista("admin","reviews/index", $reviews);
     }
 
 
@@ -52,20 +51,20 @@ class ComponentesController
         $this->view->permisos("componentes");
 
         //Obtengo el componente
-            $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
+        $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
 
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $componente = new Componentes($row);
+        $review = new Componentes($row);
 
-        if ($componente->activo == 1){
+        if ($review->activo == 1){
             echo "hola";
             //Desactivo la noticia
             $consulta = $this->db->exec("UPDATE Componentes SET activo=0 WHERE id='$id'");
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El componente '<strong>$componente->titulo</strong>' se ha desactivado correctamente.") :
-                $this->view->redireccionConMensaje("admin/componentes","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("admin/reviews","#0277bd light-blue darken-3","La review '<strong>$review->titulo</strong>' se ha desactivado correctamente.") :
+                $this->view->redireccionConMensaje("admin/reviews","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
         }
 
         else{
@@ -74,8 +73,8 @@ class ComponentesController
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El componente '<strong>$componente->titulo</strong>' se ha activado correctamente.") :
-                $this->view->redireccionConMensaje("admin/componentes","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("admin/reviews","#0277bd light-blue darken-3","La review '<strong>$review->titulo</strong>' se ha activado correctamente.") :
+                $this->view->redireccionConMensaje("admin/reviews","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
         }
 
     }
@@ -89,17 +88,17 @@ class ComponentesController
         //Obtengo la noticia
         $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $componente = new Componentes($row);
+        $review = new Componentes($row);
 
-        if ($componente->home == 1){
+        if ($review->home == 1){
 
             //Quito la noticia de la home
             $consulta = $this->db->exec("UPDATE Componentes SET home=0 WHERE id='$id'");
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El componente '<strong>$componente->titulo</strong>' ya no se muestra en la home.") :
-                $this->view->redireccionConMensaje("admin/componentes","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("admin/reviews","#0277bd light-blue darken-3","La review '<strong>$review->titulo</strong>' ya no se muestra en la home.") :
+                $this->view->redireccionConMensaje("admin/reviews","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
         }
 
         else{
@@ -109,8 +108,8 @@ class ComponentesController
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El componente '<strong>$componente->titulo</strong>' ahora se muestra en la home.") :
-                $this->view->redireccionConMensaje("admin/componentes","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("admin/reviews","#0277bd light-blue darken-3","La review '<strong>$review->titulo</strong>' ahora se muestra en la home.") :
+                $this->view->redireccionConMensaje("admin/reviews","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
         }
 
     }
@@ -125,13 +124,13 @@ class ComponentesController
         //Obtengo la noticia
         $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $componente = new Componentes($row);
+        $review = new Componentes($row);
 
         //Borro la noticia
         $consulta = $this->db->exec("DELETE FROM Componentes WHERE id='$id'");
 
         //Borro la imagen asociada
-        $archivo = $_SESSION['public']."img/".$componente->imagen;
+        $archivo = $_SESSION['public']."img/".$review->imagen;
         $texto_imagen = "";
         if (is_file($archivo)){
             unlink($archivo);
@@ -140,8 +139,8 @@ class ComponentesController
 
         //Mensaje y redirección
         ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-            $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El Componente se ha borrado correctamente$texto_imagen.") :
-            $this->view->redireccionConMensaje("admin/componentes","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
+            $this->view->redireccionConMensaje("admin/reviews","#0277bd light-blue darken-3","La review se ha borrado correctamente$texto_imagen.") :
+            $this->view->redireccionConMensaje("admin/reviews","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
 
     }
 
@@ -150,9 +149,9 @@ class ComponentesController
         //Permisos
         $this->view->permisos("componentes");
         //Creo un nuevo usuario vacío
-        $componente = new Componentes();
+        $review = new Componentes();
         //Llamo a la ventana de edición
-        $this->view->vista("admin","componentes/editar", $componente);
+        $this->view->vista("admin","reviews/editar", $review);
     }
 
     public function editar($id){
@@ -183,11 +182,11 @@ class ComponentesController
             $texto_img = ""; //Para el mensaje
 
             if ($id == "nuevo"){
-
-                //Creo una nuevo componente
+                //Creo una nueva review
                 $consulta = $this->db->exec("INSERT INTO Componentes 
-                    (titulo, entradilla, autor, fecha, texto, slug, imagen) VALUES 
+                    (titulo, entradilla, autor, fecha, texto, slug, imagen,) VALUES 
                     ('$titulo','$entradilla','$autor','$fecha','$texto','$slug','$imagen')");
+
                 //Subo la imagen
                 if ($imagen){
                     if (is_uploaded_file($imagen_recibida['tmp_name']) && move_uploaded_file($imagen_recibida['tmp_name'], $imagen_subida)){
@@ -200,8 +199,8 @@ class ComponentesController
 
                 //Mensaje y redirección
                 ($consulta > 0) ?
-                    $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El componente '<strong>$titulo</strong>' se creado correctamente.".$texto_img) :
-                    $this->view->redireccionConMensaje("admin/componentes","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
+                    $this->view->redireccionConMensaje("admin/reviews","#0277bd light-blue darken-3","La review '<strong>$titulo</strong>' se creado correctamente.".$texto_img) :
+                    $this->view->redireccionConMensaje("admin/reviews","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
             }
             else{
 
@@ -222,7 +221,7 @@ class ComponentesController
                 }
 
                 //Mensaje y redirección
-                $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El componente '<strong>$titulo</strong>' se guardado correctamente.".$texto_img);
+                $this->view->redireccionConMensaje("admin/reviews","#0277bd light-blue darken-3","LA review '<strong>$titulo</strong>' se guardado correctamente.".$texto_img);
 
             }
         }
@@ -233,10 +232,10 @@ class ComponentesController
             //Obtengo la noticia
             $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
-            $componente = new Componentes($row);
+            $review = new Componentes($row);
 
             //Llamo a la ventana de edición
-            $this->view->vista("admin","componentes/editar", $componente);
+            $this->view->vista("admin","reviews/editar", $review);
         }
 
     }

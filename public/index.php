@@ -8,7 +8,7 @@ session_start();
 use App\Controller\AppController;
 use App\Controller\ComponentesController;
 use App\Controller\TrabajadorController;
-use App\Controller\DiscusionesController;
+use App\Controller\ReviewsController;
 
 //echo password_hash("Madrid01",  PASSWORD_BCRYPT, ['cost'=>12]); //-->para añadir trabajadores
 
@@ -52,8 +52,9 @@ function controlador($nombre=null){
     switch($nombre){
         default: return new AppController; //Front-end
         case "componentes": return new ComponentesController; //Back-end componentes
+        case "reviews": return new ReviewsController;
         case "trabajadores": return new TrabajadorController; //Autentificacion y Back-end de trabajadores
-        case "discusiones": return new DiscusionController;
+
     }
 
 }
@@ -95,6 +96,7 @@ switch ($ruta){
     //General
     case "admin":
     case "admin/entrar":
+    case "admin/inicio":
         controlador("trabajadores")->entrar();
         break;
     case "admin/salir":
@@ -135,8 +137,24 @@ switch ($ruta){
     case (strpos($ruta,"admin/componentes/borrar/") === 0):
         controlador("componentes")->borrar(str_replace("admin/componentes/borrar/","",$ruta));
         break;
-    case (strpos($ruta,"admin/") === 0):
-        controlador("trabajadores")->entrar();
+    //Reviews
+    case "admin/reviews":
+        controlador("reviews")->index();
+        break;
+    case "admin/reviews/crear":
+        controlador("reviews")->crear();
+        break;
+    case (strpos($ruta,"admin/reviews/editar/") === 0):
+        controlador("reviews")->editar(str_replace("admin/reviews/editar/","",$ruta));
+        break;
+    case (strpos($ruta,"admin/reviews/activar/") === 0):
+        controlador("reviews")->activar(str_replace("admin/reviews/activar/","",$ruta));
+        break;
+    case (strpos($ruta,"admin/reviews/home/") === 0):
+        controlador("reviews")->home(str_replace("admin/reviews/home/","",$ruta));
+        break;
+    case (strpos($ruta,"admin/reviews/borrar/") === 0):
+        controlador("reviews")->borrar(str_replace("admin/reviews/borrar/","",$ruta));
         break;
     //Discusiones
     case "admin/discusiones":

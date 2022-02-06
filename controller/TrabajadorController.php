@@ -81,8 +81,7 @@ class TrabajadorController
             }
             else{
                 //Redirección con mensaje
-                echo "usuario no existe";
-                //$this->view->redireccionConMensaje("admin","red","No existe ningún usuario con ese nombre.");
+                $this->view->redireccionConMensaje("admin","red","No existe ningún usuario con ese nombre.");
             }
         }
         //Le llevo a la página de acceso

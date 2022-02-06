@@ -26,8 +26,8 @@
 
         <!--Menú de navegación-->
         <ul id="nav-mobile" class="center-aling left hide-on-med-and-down">
-            <li class="<?php echo ($_SESSION['ruta'] == 'admin/index') ? "activoadmin" : "" ?>">
-                <a href="<?php echo $_SESSION['home'] ?>admin/index" title="Inicio"">Inicio</a>
+            <li class="<?php echo ($_SESSION['ruta'] == 'admin/inicio') ? "activoadmin" : "" ?>">
+                <a href="<?php echo $_SESSION['home'] ?>admin/inicio" title="Inicio"">Inicio</a>
             </li>
             <li class="<?php echo ($_SESSION['ruta'] == 'admin/componentes') ? "activoadmin" : "" ?>">
                 <a href="<?php echo $_SESSION['home'] ?>admin/componentes" title="Componentes">Componentes</a>
