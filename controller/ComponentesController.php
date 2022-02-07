@@ -183,29 +183,29 @@ class ComponentesController
             $texto_img = ""; //Para el mensaje
 
             if ($id == "nuevo"){
-
                 //Creo una nuevo componente
                 $consulta = $this->db->exec("INSERT INTO Componentes 
                     (titulo, entradilla, autor, fecha, texto, slug, imagen) VALUES 
                     ('$titulo','$entradilla','$autor','$fecha','$texto','$slug','$imagen')");
+
                 //Subo la imagen
                 if ($imagen){
                     if (is_uploaded_file($imagen_recibida['tmp_name']) && move_uploaded_file($imagen_recibida['tmp_name'], $imagen_subida)){
                         $texto_img = " La imagen se ha subido correctamente.";
                     }
                     else{
-                        $texto_img = " Hubo un problema al subir la imagen.";
+                        $texto_img = "Hubo un problema al subir la imagen.";
                     }
                 }
 
                 //Mensaje y redirección
                 ($consulta > 0) ?
-                    $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El componente '<strong>$titulo</strong>' se creado correctamente.".$texto_img) :
+                    $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El componente '<strong>$titulo</strong>' se creado correctamente.$texto_img") :
                     $this->view->redireccionConMensaje("admin/componentes","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
             }
             else{
 
-                //Actualizo la noticia
+                //Actualizo el componente
                 $this->db->exec("UPDATE Componentes SET 
                     titulo='$titulo',entradilla='$entradilla',autor='$autor',
                     fecha='$fecha',texto='$texto',slug='$slug' WHERE id='$id'");
@@ -222,7 +222,7 @@ class ComponentesController
                 }
 
                 //Mensaje y redirección
-                $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El componente '<strong>$titulo</strong>' se guardado correctamente.".$texto_img);
+                $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El componente '<strong>$titulo</strong>' se guardado correctamente.$texto_img");
 
             }
         }

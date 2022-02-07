@@ -239,6 +239,13 @@ h3{
 }
 
 
+
+/*Edicion Trabajador*/
+.row label{
+    margin-left: 10px;
+}
+
+
 /* FORO */
 
 .collection{
@@ -276,7 +283,8 @@ h3{
 
 
 .hilo img{
-    width: 75%;
+    width: 123px;
+    height: 123px;
     padding-top: 10px;
 }
 
@@ -284,8 +292,11 @@ h3{
     float: left;
 }
 .hilo .fecha,.likes{
-    padding-top: 10px;
+    padding-top: 13px;
     padding-left: 25px;
+}
+.likes{
+    padding-bottom: 6px;
 }
 
 .hilo span{

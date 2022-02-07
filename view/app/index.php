@@ -2,12 +2,10 @@
     <section>
         <div class="reviews">
             <div class="slideshow-container">
-                <?php foreach ($datos as $row){ ?>
                 <div class="elemento">
-                    <img src="<?php echo $_SESSION['public']."img/".$row->imagen ?>" style="width:100%;display: none" alt="<?php echo $row->titulo ?>">
+                    <img src="<?php echo $_SESSION['public'] ?>img/AMD-Radeon-RX-6900-XT.jpg" style="width:100%" alt="intro">
                     <div class="text"></div>
                 </div>
-                <?php } ?>
                 <a class="prev" onclick="plusSlides(-1)"><</a>
                 <a class="next" onclick="plusSlides(1)">></a>
             </div>

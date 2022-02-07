@@ -184,8 +184,8 @@ class ReviewsController
             if ($id == "nuevo"){
                 //Creo una nueva review
                 $consulta = $this->db->exec("INSERT INTO Componentes 
-                    (titulo, entradilla, autor, fecha, texto, slug, imagen,) VALUES 
-                    ('$titulo','$entradilla','$autor','$fecha','$texto','$slug','$imagen')");
+                    (titulo, entradilla, autor, fecha, texto, slug, imagen,review) VALUES 
+                    ('$titulo','$entradilla','$autor','$fecha','$texto','$slug','$imagen',1)");
 
                 //Subo la imagen
                 if ($imagen){

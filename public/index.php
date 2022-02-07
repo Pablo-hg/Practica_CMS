@@ -9,6 +9,7 @@ use App\Controller\AppController;
 use App\Controller\ComponentesController;
 use App\Controller\TrabajadorController;
 use App\Controller\ReviewsController;
+use App\Controller\DiscusionesController;
 
 //echo password_hash("Madrid01",  PASSWORD_BCRYPT, ['cost'=>12]); //-->para añadir trabajadores
 
@@ -52,11 +53,10 @@ function controlador($nombre=null){
     switch($nombre){
         default: return new AppController; //Front-end
         case "componentes": return new ComponentesController; //Back-end componentes
-        case "reviews": return new ReviewsController;
+        case "reviews": return new ReviewsController; //Back-end reviews
+        case "discusiones": return new DiscusionesController; //Back-end discusiones
         case "trabajadores": return new TrabajadorController; //Autentificacion y Back-end de trabajadores
-
     }
-
 }
 
 //Quito la ruta de la home a la que me están pidiendo
@@ -102,10 +102,10 @@ switch ($ruta){
     case "admin/salir":
         controlador("trabajadores")->salir();
         break;
+    //Trabajadores
     case "admin/trabajadores"://listar trabajadores
         controlador("trabajadores")->index();
         break;
-    //Usuarios
     case "admin/trabajadores/crear":
         controlador("trabajadores")->crear();
         break;
@@ -156,14 +156,26 @@ switch ($ruta){
     case (strpos($ruta,"admin/reviews/borrar/") === 0):
         controlador("reviews")->borrar(str_replace("admin/reviews/borrar/","",$ruta));
         break;
-    //Discusiones
+    //Discusiones/Foro
     case "admin/discusiones":
         controlador("discusiones")->index();
         break;
     case "admin/discusiones/crear":
         controlador("discusiones")->crear();
         break;
-
+    case (strpos($ruta,"admin/discusiones/activar/") === 0):
+        controlador("discusiones")->activar(str_replace("admin/discusiones/activar/","",$ruta));
+        break;
+    case (strpos($ruta,"admin/discusiones/editar/") === 0):
+        controlador("discusiones")->editar(str_replace("admin/discusiones/editar/","",$ruta));
+        break;
+    case (strpos($ruta,"admin/discusiones/borrar/") === 0):
+        controlador("discusiones")->borrar(str_replace("admin/discusiones/borrar/","",$ruta));
+        break;
+    //Hilo
+    case (strpos($ruta,"admin/hilo/") === 0): //Si la ruta empieza por "noticia/"
+        controlador("discusiones")->discusion(str_replace("admin/hilo/","",$ruta)); //
+        break;
     //Resto de rutas
     default:
         controlador()->index();

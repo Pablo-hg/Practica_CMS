@@ -1,5 +1,5 @@
 <h3>
-    <a href="<?php echo $_SESSION['home'] ?>admin" title="Inicio">Inicio</a> <span>| Usuarios</span>
+    Trabajadores
 </h3>
 <div class="row">
     <!--Nuevo-->
@@ -25,12 +25,13 @@
             <div class="card horizontal  sticky-action admin">
                 <div class="card-stacked">
                     <div class="card-content">
-                        <i class="material-icons medium">person</i>
-                        <h4>
-                            <?php echo $row->usuario ?>
-                        </h4>
-                        <strong>Usuarios: </strong><?php echo ($row->usuarios) ? "Sí" : "No" ?><br>
-                        <strong>Noticias: </strong><?php echo ($row->noticias) ? "Sí" : "No" ?>
+                        <img src="<?php echo $_SESSION['public']."img/".$row->foto ?>" alt="perfil" class="circle" style="width: 75px">
+                        <h4> <?php echo $row->usuario ?></h4>
+                        <strong>Componentes: </strong><?php echo ($row->componentes) ? "Sí" : "No" ?>
+                        <strong>&nbsp Reviews: </strong><?php echo ($row->reviews) ? "Sí" : "No" ?>
+                        <strong>&nbsp Discusiones: </strong><?php echo ($row->discusiones) ? "Sí" : "No" ?><br>
+                        <strong>Hilo: </strong><?php echo ($row->hilo) ? "Sí" : "No" ?>
+                        <strong>&nbsp Trabajadores: </strong><?php echo ($row->trabajadores) ? "Sí" : "No" ?>
                     </div>
                     <div class="card-action">
                         <a href="<?php echo $_SESSION['home']."admin/trabajadores/editar/".$row->id ?>" title="Editar">

@@ -1,22 +1,27 @@
 <h3>
-    Nueva Review
+    <?php if ($datos->id){ ?>
+        <span>Editar <?php echo $datos->title ?></span>
+    <?php } else { ?>
+        <span>Nueva discusión</span>
+    <?php } ?>
 </h3>
 <div class="row">
     <?php $id = ($datos->id) ? $datos->id : "nuevo" ?>
-    <form class="col s12" method="POST" enctype="multipart/form-data" action="<?php echo $_SESSION['home'] ?>admin/reviews/editar/<?php echo $id ?>">
+    <form class="col s12" method="POST" enctype="multipart/form-data" action="<?php echo $_SESSION['home'] ?>admin/discusiones/editar/<?php echo $id ?>">
         <div class="col m12 l6">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="titulo" type="text" name="titulo" value="<?php echo $datos->titulo ?>">
+                    <input id="titulo" type="text" name="title" value="<?php echo $datos->title ?>">
                     <label for="titulo">Título</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="autor" type="text" name="autor" value="<?php echo $datos->autor ?>">
+                    <?php $autor = ($datos->author) ?>
+                    <input id="autor" type="text" name="author" value="<?php echo $autor ?>">
                     <label for="autor">Autor</label>
                 </div>
                 <div class="input-field col s12">
-                    <?php $fecha = ($datos->fecha) ? date("d-m-Y", strtotime($datos->fecha)) : date("d-m-Y") ?>
-                    <input id="fecha" type="text" name="fecha" class="datepicker" value="<?php echo $fecha ?>">
+                    <?php $fecha = ($datos->dates) ? date("d-m-Y", strtotime($datos->dates)) : date("d-m-Y") ?>
+                    <input id="fecha" type="text" name="dates" class="datepicker" value="<?php echo $fecha ?>">
                     <label for="fecha">Fecha</label>
                 </div>
             </div>
@@ -25,24 +30,24 @@
             <div class="file-field input-field">
                 <div class="btn">
                     <span>Imagen</span>
-                    <input type="file" name="imagen">
+                    <input type="file" name="image">
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
                 </div>
             </div>
-            <?php if ($datos->imagen){ ?>
-                <img src="<?php echo $_SESSION['public']."img/".$datos->imagen ?>" alt="<?php echo $datos->titulo ?>">
+            <?php if ($datos->image){ ?>
+                <img src="<?php echo $_SESSION['public']."img/".$datos->image ?>" alt="<?php echo $datos->title ?>">
             <?php } ?>
         </div>
         <div class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="entradilla" class="materialize-textarea" name="entradilla"><?php echo $datos->entradilla ?></textarea>
+                    <textarea id="entradilla" class="materialize-textarea" name="intro"><?php echo $datos->intro ?></textarea>
                     <label for="entradilla">Entradilla</label>
                 </div>
                 <div class="input-field col s12">
-                    <textarea id="texto" class="materialize-textarea" name="texto"><?php echo $datos->texto ?></textarea>
+                    <textarea id="texto" class="materialize-textarea" name="texts"><?php echo $datos->texts ?></textarea>
                     <label for="texto">Texto</label>
                 </div>
             </div>
@@ -50,7 +55,7 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <a href="<?php echo $_SESSION['home'] ?>admin/reviews" title="Volver">
+                <a href="<?php echo $_SESSION['home'] ?>admin/discusiones" title="Volver">
                     <button class="btn waves-effect waves-light" type="button">Volver
                         <i class="material-icons right">replay</i>
                     </button>

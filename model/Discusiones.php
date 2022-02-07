@@ -5,28 +5,28 @@ namespace App\Model;
 class Discusiones
 {
     var $id;
-    var $titulo;
+    var $title;
     var $slug;
-    var $entradilla;
-    var $texto;
+    var $intro;
+    var $texts;
     var $activo;
-    var $fecha;
-    var $autor;
-    var $imagen;
+    var $dates;
+    var $author;
+    var $image;
     var $likes;
     var $foro;
 
     function __construct($data=null){
 
         $this->id = ($data) ? $data->id : null;
-        $this->titulo = ($data) ? $data->titulo : null;
+        $this->title = ($data) ? $data->title : null;
         $this->slug = ($data) ? $data->slug : null;
-        $this->entradilla = ($data) ? $data->entradilla : null;
-        $this->texto = ($data) ? $data->texto : null;
+        $this->intro = ($data) ? $data->intro : null;
+        $this->texts = ($data) ? $data->texts : null;
         $this->activo = ($data) ? $data->activo : null;
-        $this->fecha = ($data) ? $data->fecha : null;
-        $this->autor = ($data) ? $data->autor : null;
-        $this->imagen = ($data) ? $data->imagen : null;
+        $this->dates = ($data) ? $data->dates : null;
+        $this->author = ($data) ? $data->author : null;
+        $this->image = ($data) ? $data->image : null;
         $this->likes = ($data) ? $data->likes : null;
         $this->foro = ($data) ? $data->foro : null;
 

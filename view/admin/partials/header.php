@@ -26,32 +26,51 @@
 
         <!--Menú de navegación-->
         <ul id="nav-mobile" class="center-aling left hide-on-med-and-down">
+            <?php if (!isset($_SESSION['usuario'])){ ?>
+                <li class="<?php echo ($_SESSION['ruta'] == '') ? "activo" : "" ?>">
+                    <a href="<?php echo $_SESSION['home'] ?>" title="Inicio"">Inicio</a>
+                </li>
+                <li class="<?php echo ($_SESSION['ruta'] == 'componentes') ? "activo" : "" ?>">
+                    <a href="<?php echo $_SESSION['home'] ?>componentes" title="Componentes">Componentes</a>
+                </li>
+                <li class="<?php echo ($_SESSION['ruta'] == 'reviews') ? "activo" : "" ?>">
+                    <a href="<?php echo $_SESSION['home'] ?>reviews" title="Reviews">Reviews</a>
+                </li>
+                <li>
+                <li class="<?php echo ($_SESSION['ruta'] == 'foro') ? "activo" : "" ?>">
+                    <a href="<?php echo $_SESSION['home'] ?>foro" title="Foro">Foro</a>
+                </li>
+                <li class="<?php echo ($_SESSION['ruta'] == 'acerca-de') ? "activo" : "" ?>">
+                    <a href="<?php echo $_SESSION['home'] ?>acerca-de" title="Acerca de">Acerca de</a>
+                </li>
+                <li>
+                    <a href="<?php echo $_SESSION['home'] ?>admin/salir" title="Panel de administración" style="background-color: #00c300;">Acceder </a>
+                </li>
+            <?php } else{ ?>
             <li class="<?php echo ($_SESSION['ruta'] == 'admin/inicio') ? "activoadmin" : "" ?>">
                 <a href="<?php echo $_SESSION['home'] ?>admin/inicio" title="Inicio"">Inicio</a>
             </li>
-            <li class="<?php echo ($_SESSION['ruta'] == 'admin/componentes') ? "activoadmin" : "" ?>">
-                <a href="<?php echo $_SESSION['home'] ?>admin/componentes" title="Componentes">Componentes</a>
-            </li>
-            <li class="<?php echo ($_SESSION['ruta'] == 'admin/reviews') ? "activoadmin" : "" ?>">
-                <a href="<?php echo $_SESSION['home'] ?>admin/reviews" title="Reviews">Reviews</a>
-            </li>
-            <li>
-            <li class="<?php echo ($_SESSION['ruta'] == 'admin/foro') ? "activoadmin" : "" ?>">
-                <a href="<?php echo $_SESSION['home'] ?>admin/foro" title="Foro">Foro</a>
-            </li>
-            <?php if ($_SESSION['trabajadores'] == 1){ ?>
-                <li>
-                    <a href="<?php echo $_SESSION['home'] ?>admin/trabajadores" title="Trabajadores">Trabajadores</a>
+            <?php if ($_SESSION['componentes'] == 1) { ?>
+                <li class="<?php echo ($_SESSION['ruta'] == 'admin/componentes') ? "activoadmin" : "" ?>">
+                    <a href="<?php echo $_SESSION['home'] ?>admin/componentes" title="Componentes">Componentes</a>
+                </li>
+            <?php } if ($_SESSION['reviews'] == 1) { ?>
+                <li class="<?php echo ($_SESSION['ruta'] == 'admin/reviews') ? "activoadmin" : "" ?>">
+                    <a href="<?php echo $_SESSION['home'] ?>admin/reviews" title="Reviews">Reviews</a>
+                </li>
+            <?php }  if ($_SESSION['discusiones'] == 1) { ?>
+                <li class="<?php echo ($_SESSION['ruta'] == 'admin/discusiones') ? "activoadmin" : "" ?>">
+                    <a href="<?php echo $_SESSION['home'] ?>admin/discusiones" title="discusiones">Discusiones</a>
+                </li>
+             <?php /*} else if (($_SESSION['discusiones'] == 0 && $_SESSION['hilo'] == 1)) { ?>
+                <li class="<?php echo ($_SESSION['ruta'] == 'admin/discusiones') ? "activoadmin" : "" ?>">
+                    <a href="<?php echo $_SESSION['home'] ?>admin/discusiones" title="discusiones">Discusiones</a>
+                </li>
+                <?php */} if ($_SESSION['trabajadores'] == 1) { ?>
+                <li class="<?php echo ($_SESSION['ruta'] == 'admin/trabajadores') ? "activoadmin" : "" ?>">
+                    <a href="<?php echo $_SESSION['home'] ?>admin/trabajadores" title="discusiones">Trabajadores</a>
                 </li>
             <?php } ?>
-            <?php if (!isset($_SESSION['usuario'])){ ?>
-            <li class="<?php echo ($_SESSION['ruta'] == 'acerca-de') ? "activo" : "" ?>">
-                <a href="<?php echo $_SESSION['home'] ?>acerca-de" title="Acerca de">Acerca de</a>
-            </li>
-            <li>
-                <a href="<?php echo $_SESSION['home'] ?>admin/salir" title="Panel de administración" style="background-color: #00c300;">Acceder </a>
-            </li>
-            <?php } else{ ?>
             <li>
                 <a href="<?php echo $_SESSION['home'] ?>admin/salir" title="Panel de administración" style="background-color: #00c300;">Salir </a>
                 <?php } ?>

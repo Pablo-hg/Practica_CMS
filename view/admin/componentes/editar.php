@@ -1,5 +1,9 @@
 <h3>
-    Nuevo Componente
+    <?php if ($datos->id){ ?>
+        <span>Editar <?php echo $datos->titulo ?></span>
+    <?php } else { ?>
+        <span>Nuevo componente</span>
+    <?php } ?>
 </h3>
 <div class="row">
     <?php $id = ($datos->id) ? $datos->id : "nuevo" ?>

@@ -5,6 +5,7 @@ use App\Model\Componentes;
 use App\Helper\ViewHelper;
 use App\Helper\DbHelper;
 use App\Model\Discusiones;
+use App\Model\Trabajadores;
 
 
 class AppController
@@ -91,7 +92,7 @@ class AppController
     public function discusiones(){
 
         //Consulta a la bbdd
-        $rowset = $this->db->query("SELECT * FROM Discusiones WHERE activo=1 AND foro=1 ORDER BY fecha DESC");
+        $rowset = $this->db->query("SELECT * FROM Discusiones WHERE activo=1 AND foro=1 ORDER BY dates DESC");
 
         //Asigno resultados a un array de instancias del modelo
         $discusiones = array();
@@ -109,12 +110,15 @@ class AppController
         //Consulta a la bbdd
         $rowset = $this->db->query("SELECT * FROM Discusiones WHERE activo=1 AND slug='$slug'");
 
+        //Asigno resultado a una instancia del modelo
         $hilo = array();
-        while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($hilo,new Discusiones($row));
+        while ($row = $rowset->fetch(\PDO::FETCH_OBJ)) {
+            array_push($hilo, new Discusiones($row));
         }
+
         //Llamo a la vista
         $this->view->vista("app", "discusion", $hilo);
 
     }
+
 }

@@ -44,7 +44,7 @@
             </li>
             <li>
                 <a href="<?php echo $_SESSION['home'] ?>admin" title="Panel de administración"
-                   target="_blank" style="background-color: #00c300;"> Acceder </a>
+                   style="background-color: #00c300;"> Acceder </a>
             </li>
         </ul>
     </div>
