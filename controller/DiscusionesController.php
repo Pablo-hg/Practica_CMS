@@ -42,6 +42,7 @@ class DiscusionesController
 
     }
 
+    //para crear una discusion
     public function crear(){
 
         //Permisos
@@ -87,17 +88,18 @@ class DiscusionesController
 
     }
 
+    //Para borrar una discusion
     public function borrar($id){
 
         //Permisos
         $this->view->permisos("discusiones");
 
-        //Obtengo la noticia
+        //Obtengo la discusion
         $rowset = $this->db->query("SELECT * FROM Discusiones WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
         $discusion = new Discusiones($row);
 
-        //Borro la noticia
+        //Borro la discusion
         $consulta = $this->db->exec("DELETE FROM Discusiones WHERE id='$id'");
 
         //Borro la imagen asociada
@@ -115,6 +117,7 @@ class DiscusionesController
 
     }
 
+    //Para editar una discusion
     public function editar($id){
 
         //Permisos
@@ -187,7 +190,7 @@ class DiscusionesController
         //Si no, obtengo la discusion y muestro la ventana de edición
         else{
 
-            //Obtengo la noticia
+            //Obtengo la discusion
             $rowset = $this->db->query("SELECT * FROM Discusiones WHERE id='$id' LIMIT 1");
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
             $discusion = new Discusiones($row);
@@ -198,7 +201,7 @@ class DiscusionesController
 
     }
 
-
+    //Ver los hilos/una discusion
     public function discusion($slug){
 
         //Permisos

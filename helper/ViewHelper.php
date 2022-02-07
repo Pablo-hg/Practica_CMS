@@ -3,6 +3,7 @@ namespace App\Helper;
 
 class ViewHelper {
 
+    //Cargo las difernetes vistas
     function vista($carpeta,$archivo,$datos=null){
 
         //Llamo a la cabecera
@@ -16,13 +17,16 @@ class ViewHelper {
 
     }
 
+    //cargo el mensaje y una redireccion
     public function redireccionConMensaje($ruta, $tipo, $texto){
-
+        //Guardo en una sesion el color y el texto de un mensaje
         $_SESSION['mensaje'] = array("tipo" => $tipo, "texto" => $texto);
+        //redirijo a la ruta
         header("Location:".$_SESSION["home"].$ruta);
 
     }
 
+    //obtengo los permisos para usar la tabla
     public function permisos($permiso=null){
 
         if (isset($_SESSION['usuario']) AND ($permiso == null OR $_SESSION[$permiso] == 1)){

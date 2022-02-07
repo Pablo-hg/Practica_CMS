@@ -59,7 +59,7 @@ class ComponentesController
 
         if ($componente->activo == 1){
             echo "hola";
-            //Desactivo la noticia
+            //Desactivo el componente
             $consulta = $this->db->exec("UPDATE Componentes SET activo=0 WHERE id='$id'");
 
             //Mensaje y redirección
@@ -69,7 +69,7 @@ class ComponentesController
         }
 
         else{
-            //Activo la noticia
+            //Activo el componente
             $consulta = $this->db->exec("UPDATE Componentes SET activo=1 WHERE id='$id'");
 
             //Mensaje y redirección
@@ -86,14 +86,14 @@ class ComponentesController
         //Permisos
         $this->view->permisos("componentes");
 
-        //Obtengo la noticia
+        //Obtengo el componente
         $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
         $componente = new Componentes($row);
 
         if ($componente->home == 1){
 
-            //Quito la noticia de la home
+            //Quito el componente de la home
             $consulta = $this->db->exec("UPDATE Componentes SET home=0 WHERE id='$id'");
 
             //Mensaje y redirección
@@ -104,7 +104,7 @@ class ComponentesController
 
         else{
 
-            //Muestro la noticia en la home
+            //Muestro el componente en la home
             $consulta = $this->db->exec("UPDATE Componentes SET home=1 WHERE id='$id'");
 
             //Mensaje y redirección
@@ -116,18 +116,18 @@ class ComponentesController
     }
 
 
-
+    //Para borrar el componente
     public function borrar($id){
 
         //Permisos
         $this->view->permisos("componentes");
 
-        //Obtengo la noticia
+        //Obtengo el componente
         $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
         $componente = new Componentes($row);
 
-        //Borro la noticia
+        //Borro el componente
         $consulta = $this->db->exec("DELETE FROM Componentes WHERE id='$id'");
 
         //Borro la imagen asociada
@@ -145,6 +145,7 @@ class ComponentesController
 
     }
 
+    //Para crear un componente
     public function crear(){
 
         //Permisos
@@ -155,6 +156,7 @@ class ComponentesController
         $this->view->vista("admin","componentes/editar", $componente);
     }
 
+    //Para editar un componente
     public function editar($id){
 
         //Permisos
@@ -182,6 +184,7 @@ class ComponentesController
             $imagen_subida = ($_FILES['imagen']['name']) ? '/var/www/html'.$_SESSION['public']."img/".$_FILES['imagen']['name'] : "";
             $texto_img = ""; //Para el mensaje
 
+            //Si el componente es nuevo
             if ($id == "nuevo"){
                 //Creo una nuevo componente
                 $consulta = $this->db->exec("INSERT INTO Componentes 
@@ -203,8 +206,8 @@ class ComponentesController
                     $this->view->redireccionConMensaje("admin/componentes","#0277bd light-blue darken-3","El componente '<strong>$titulo</strong>' se creado correctamente.$texto_img") :
                     $this->view->redireccionConMensaje("admin/componentes","#ef5350 red lighten-1","Hubo un error al guardar en la base de datos.");
             }
+            //Si no es nuevo
             else{
-
                 //Actualizo el componente
                 $this->db->exec("UPDATE Componentes SET 
                     titulo='$titulo',entradilla='$entradilla',autor='$autor',

@@ -32,6 +32,7 @@ class TrabajadorController
 
     }
 
+    //entrar en un trabajador
     public function entrar(){
 
         //Si ya está autenticado, le llevo a la página de inicio del panel
@@ -93,6 +94,7 @@ class TrabajadorController
 
     }
 
+    //Salir de modo "admin"
     public function salir(){
 
         //Borro al usuario de la sesión
@@ -157,6 +159,7 @@ class TrabajadorController
 
     }
 
+    //Para borrar un trabajador
     public function borrar($id){
 
         //Permisos
@@ -172,6 +175,7 @@ class TrabajadorController
 
     }
 
+    //para crear un trabajador
     public function crear(){
 
         //Permisos
@@ -185,6 +189,7 @@ class TrabajadorController
 
     }
 
+    //Para editra un trabajador
     public function editar($id){
 
         //Permisos

@@ -11,9 +11,6 @@ use App\Controller\TrabajadorController;
 use App\Controller\ReviewsController;
 use App\Controller\DiscusionesController;
 
-//echo password_hash("Madrid01",  PASSWORD_BCRYPT, ['cost'=>12]); //-->para añadir trabajadores
-
-
 /*
  * Asigno a sesión las rutas de las carpetas public y home, necesarias tanto para las rutas como para
  * poder enlazar imágenes y archivos css, js
@@ -67,7 +64,7 @@ switch ($ruta){
 
     //Front-end
     case "":
-    case "/":
+    case "/"://Home
         controlador()->index();
         break;
     case "acerca-de":
@@ -76,20 +73,20 @@ switch ($ruta){
     case "componentes":
         controlador()->componentes();
         break;
-    case (strpos($ruta,"componente/") === 0): //Si la ruta empieza por "componente/"
-        controlador()->componente(str_replace("componente/","",$ruta)); //El parámetro es lo que hayo después de "componentes"
+    case (strpos($ruta,"componente/") === 0): //Si la ruta contiene por "componente/"
+        controlador()->componente(str_replace("componente/","",$ruta));
         break;
     case "reviews":
         controlador()->reviews();
         break;
-    case (strpos($ruta,"review/") === 0): //Si la ruta empieza por "noticia/"
-        controlador()->componente(str_replace("review/","",$ruta)); //El parámetro es lo que hayo después de "componentes"
+    case (strpos($ruta,"review/") === 0): //Si la ruta contiene por "review/"
+        controlador()->componente(str_replace("review/","",$ruta));
         break;
     case "foro":
         controlador()->discusiones();
         break;
-    case (strpos($ruta,"hilo/") === 0): //Si la ruta empieza por "noticia/"
-        controlador()->discusion(str_replace("hilo/","",$ruta)); //El parámetro es lo que hayo después de "componentes"
+    case (strpos($ruta,"hilo/") === 0): //Si la ruta empieza por "hilo/"
+        controlador()->discusion(str_replace("hilo/","",$ruta));
         break;
 
     //Back-end

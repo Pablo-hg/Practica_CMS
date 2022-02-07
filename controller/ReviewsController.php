@@ -25,7 +25,7 @@ class ReviewsController
 
     }
 
-    //Listado de componentes
+    //Listado de reviews
     public function index(){
         //Permisos
         $this->view->permisos("componentes");
@@ -68,7 +68,7 @@ class ReviewsController
         }
 
         else{
-            //Activo la noticia
+            //Activo la review
             $consulta = $this->db->exec("UPDATE Componentes SET activo=1 WHERE id='$id'");
 
             //Mensaje y redirección
@@ -85,14 +85,14 @@ class ReviewsController
         //Permisos
         $this->view->permisos("componentes");
 
-        //Obtengo la noticia
+        //Obtengo la ewview
         $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
         $review = new Componentes($row);
 
         if ($review->home == 1){
 
-            //Quito la noticia de la home
+            //Quito la review de la home
             $consulta = $this->db->exec("UPDATE Componentes SET home=0 WHERE id='$id'");
 
             //Mensaje y redirección
@@ -103,7 +103,7 @@ class ReviewsController
 
         else{
 
-            //Muestro la noticia en la home
+            //Muestro la review en la home
             $consulta = $this->db->exec("UPDATE Componentes SET home=1 WHERE id='$id'");
 
             //Mensaje y redirección
@@ -115,18 +115,18 @@ class ReviewsController
     }
 
 
-
+    //Para borrar una review
     public function borrar($id){
 
         //Permisos
         $this->view->permisos("componentes");
 
-        //Obtengo la noticia
+        //Obtengo la review
         $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
         $review = new Componentes($row);
 
-        //Borro la noticia
+        //Borro la review
         $consulta = $this->db->exec("DELETE FROM Componentes WHERE id='$id'");
 
         //Borro la imagen asociada
@@ -204,7 +204,7 @@ class ReviewsController
             }
             else{
 
-                //Actualizo la noticia
+                //Actualizo la review
                 $this->db->exec("UPDATE Componentes SET 
                     titulo='$titulo',entradilla='$entradilla',autor='$autor',
                     fecha='$fecha',texto='$texto',slug='$slug' WHERE id='$id'");
@@ -229,7 +229,7 @@ class ReviewsController
         //Si no, obtengo el componente y muestro la ventana de edición
         else{
 
-            //Obtengo la noticia
+            //Obtengo la review
             $rowset = $this->db->query("SELECT * FROM Componentes WHERE id='$id' LIMIT 1");
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
             $review = new Componentes($row);
